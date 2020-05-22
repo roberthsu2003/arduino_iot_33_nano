@@ -153,7 +153,9 @@ void printWifiStatus() {
   Serial.println(ip);
 }
 
+```
 #### arduino_secrets.h
+```c++
 #define SECRET_SSID "wifi點名稱"
 #define SECRET_PASS "密碼"
 ```
