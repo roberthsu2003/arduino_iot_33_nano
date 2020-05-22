@@ -152,4 +152,8 @@ void printWifiStatus() {
   Serial.print("To see this page in action, open a browser to http://");
   Serial.println(ip);
 }
+
+#### arduino_secrets.h
+#define SECRET_SSID "wifi點名稱"
+#define SECRET_PASS "密碼"
 ```
