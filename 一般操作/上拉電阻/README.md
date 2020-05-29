@@ -3,6 +3,8 @@
 ### 線路圖
 ![上接電阻線路圖](上拉電阻_bb.jpg)
 
+![成品](IMG_0372.jpg)
+
 ```C++
 #define btn 2
 #define led 13
