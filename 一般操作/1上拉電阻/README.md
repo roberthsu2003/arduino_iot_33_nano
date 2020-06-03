@@ -1,9 +1,18 @@
 # 上拉電阻
-## 學習何時使用上接電阻
+## 學習何時使用上拉電阻
 ### 線路圖
-![上接電阻線路圖](上拉電阻_bb.jpg)
+![上拉電阻線路圖](上拉電阻_bb.jpg)
 
+### 實體線路圖
 ![成品](IMG_0372.jpg)
+
+### 上拉電阻接線
+[![上拉電阻成品展示](https://img.youtube.com/vi/y28I-Kwlljg/2.jpg)](https://youtu.be/y28I-Kwlljg)
+
+### 上拉電阻成品展示
+[![上拉電阻成品展示](https://img.youtube.com/vi/_LYhqSXSdy8/1.jpg)](https://youtu.be/_LYhqSXSdy8)
+
+
 
 ```C++
 #define btn 2
