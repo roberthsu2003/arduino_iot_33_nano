@@ -11,4 +11,4 @@
 ![](IMG_0383.jpg)
 
 #### arduino naon 33 iot 說明文件
-[](https://content.arduino.cc/assets/Pinout-NANO33IoT_latest.pdf)
+https://content.arduino.cc/assets/Pinout-NANO33IoT_latest.pdf
