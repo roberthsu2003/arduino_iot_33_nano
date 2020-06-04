@@ -15,23 +15,34 @@
 
 
 ```C++
-#define btn 2
-#define led 13
+##################################
+#安裝Eventually package
+#
+###################################
+
+#include <Eventually.h>
+
+/*
+ * This is the standard blinky lights written using Eventually.
+ * Just set LIGHT_PIN to whatever pin you have your LED attached to.
+ */
+
+#define LIGHT_PIN 5
+
+EvtManager mgr;
+bool state = LOW;
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(btn, INPUT_PULLUP);
-  pinMode(led, OUTPUT);
+  pinMode(LIGHT_PIN, OUTPUT);
+  mgr.addListener(new EvtTimeListener(1000, true, (EvtAction)blinkme)); 
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  int sensorVal = digitalRead(btn);
-  if(sensorVal == LOW)
-    digitalWrite(led,HIGH);
-  else
-    digitalWrite(led,LOW);
+bool blinkme() {
+  state = !state; // Switch light states
+  digitalWrite(LIGHT_PIN, state); // Display the state
+  return false; // Allow the event chain to continue
 }
+
+USE_EVENTUALLY_LOOP(mgr) // Use this instead of your loop() function.
 ```
 
