@@ -1,28 +1,35 @@
-# 上拉電阻
-## 學習何時使用上拉電阻
+# bitLed
+## 學習如何操控2進位0b
 ### 線路圖
-![上接電阻線路圖](上拉電阻_bb.jpg)
+![](bitLed_bb.jpg)
 
-![成品](IMG_0372.jpg)
+### 接線成品
+![](IMG_0376.jpg)
+
+### bitLed展示
+[![bitLed展示](https://img.youtube.com/vi/hkFwj3PkxXk/1.jpg)](https://youtu.be/hkFwj3PkxXk)
 
 ```C++
-#define btn 2
-#define led 13
-
+byte maxValue = 255;
+byte currentValue = 0;
+byte pins[] = {3, 4, 5, 6, 7, 8, 9, 10};
+byte count = sizeof(pins) / sizeof(pins[0]);
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(btn, INPUT_PULLUP);
-  pinMode(led, OUTPUT);
+  for(int i=0;i<=count;i++){
+    pinMode(pins[i],OUTPUT);
+  }
+  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int sensorVal = digitalRead(btn);
-  if(sensorVal == LOW)
-    digitalWrite(led,HIGH);
-  else
-    digitalWrite(led,LOW);
+  Serial.println(currentValue);
+  for(int i=0;i<=count;i++){
+    bool state = bitRead(currentValue,i);
+    digitalWrite(pins[i],state);
+  }
+  delay(250);
+  currentValue > maxValue ? 0 : currentValue++ ;
 }
 ```
 
