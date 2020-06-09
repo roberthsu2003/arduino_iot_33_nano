@@ -4,13 +4,10 @@
 ![](EventDrive_bb.jpg)
 
 ### 實體線路圖
-![](IMG_0372.jpg)
+![](IMG_0386.jpg)
 
-### 上拉電阻接線
-[![上拉電阻成品展示](https://img.youtube.com/vi/y28I-Kwlljg/2.jpg)](https://youtu.be/y28I-Kwlljg)
-
-### 上拉電阻成品展示
-[![上拉電阻成品展示](https://img.youtube.com/vi/_LYhqSXSdy8/1.jpg)](https://youtu.be/_LYhqSXSdy8)
+### 事件導向_間隔時間執行_成品展示
+[![事件導向_間隔時間執行](https://img.youtube.com/vi/XptfalbqghI/0.jpg)](https://youtu.be/XptfalbqghI)
 
 
 
