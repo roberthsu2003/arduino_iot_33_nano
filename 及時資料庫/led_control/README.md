@@ -9,8 +9,9 @@
 ### Firebase建立專案,並建立及時資料庫節點
 ![](及時資料庫節點.png)
 
-### 網頁上傳
-https://arduinofirebase-6d104.web.app/
+### 控制網站
+https://arduinofirebase-6d104.web.app/  
+![QRCode](條碼.png)
 
 ### 及時資料庫LEDControl影片展示
 [![](https://img.youtube.com/vi/gRjMzTIt6XU/1.jpg)](https://youtu.be/gRjMzTIt6XU)
