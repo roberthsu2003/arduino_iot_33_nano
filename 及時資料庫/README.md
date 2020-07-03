@@ -1,7 +1,7 @@
 # 及時資料庫_使用後台資料庫控制LED
 ## 學習讓Arduino及時讀取資料,並讓網頁及時顯示LED狀態
 ### 線路圖
-![上拉電阻線路圖](led_control_bb.pdf)
+[![上拉電阻線路圖](led_control_bb.jpg)](led_control_bb.pdf)
 
 ### 實體線路圖
 ![成品](IMG_0372.jpg)
