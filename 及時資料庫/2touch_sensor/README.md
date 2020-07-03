@@ -1,16 +1,16 @@
-# 及時資料庫_使用後台資料庫控制LED
-## 學習讓Arduino及時讀取資料,並讓網頁及時顯示LED狀態
+# 及時資料庫_touchSensor
+## touchSensor及時反應至資料庫,並讓網頁及時顯示touchSensor狀態
 ### 線路圖
-[![上拉電阻線路圖](led_control_bb.jpg)](led_control_bb.pdf)
+![](touch_sensor_bb.jpg)
 
 ### 實體線路圖
-![](IMG_0403.png)
+![](IMG_0407.jpg)
 
 ### Firebase建立專案,並建立及時資料庫節點
 ![](及時資料庫節點.png)
 
 ### 控制網站
-https://arduinofirebase-6d104.web.app/  
+https://arduinofirebase-6d104.web.app/
 ![QRCode](條碼.png)
 
 ### 及時資料庫LEDControl影片展示
