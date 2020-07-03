@@ -7,13 +7,12 @@
 */
 
 //Example shows how to connect to Firebase RTDB and perform basic operation for set, get, push and update data to database
-
 //Required WiFiNINA Library for Arduino from https://github.com/arduino-libraries/WiFiNINA
 
 #include "Firebase_Arduino_WiFiNINA.h"
 
 #define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
-#define FIREBASE_AUTH "查資料"
+#define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"
 #define WIFI_SSID "robert_hsu_home"
 #define WIFI_PASSWORD "0926656000"
 #define led 13
@@ -49,7 +48,7 @@ void setup()
 
 void loop()
 {
-  String path = "iot0624/LED";
+  String path = "ledControl/state";
   if(Firebase.getBool(firebaseData,path)){
      Serial.println("getNode");
      Serial.println(firebaseData.boolData());
@@ -61,5 +60,5 @@ void loop()
   }else{
      Serial.println(firebaseData.errorReason());
   }  
-  delay(1000);
+  delay(500);
 }
