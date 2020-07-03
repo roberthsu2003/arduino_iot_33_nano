@@ -10,12 +10,10 @@
 ![](及時資料庫節點.png)
 
 ### 網頁上傳
+https://arduinofirebase-6d104.web.app/
 
-### 上拉電阻接線
-[![上拉電阻成品展示](https://img.youtube.com/vi/y28I-Kwlljg/2.jpg)](https://youtu.be/y28I-Kwlljg)
-
-### 上拉電阻成品展示
-[![上拉電阻成品展示](https://img.youtube.com/vi/_LYhqSXSdy8/1.jpg)](https://youtu.be/_LYhqSXSdy8)
+### 及時資料庫LEDControl影片展示
+[![](https://img.youtube.com/vi/gRjMzTIt6XU/1.jpg)](https://youtu.be/gRjMzTIt6XU)
 
 
 
@@ -29,15 +27,14 @@
 */
 
 //Example shows how to connect to Firebase RTDB and perform basic operation for set, get, push and update data to database
-
 //Required WiFiNINA Library for Arduino from https://github.com/arduino-libraries/WiFiNINA
 
 #include "Firebase_Arduino_WiFiNINA.h"
 
 #define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
-#define FIREBASE_AUTH "查資料"
+#define FIREBASE_AUTH "xxxxxxxxx"
 #define WIFI_SSID "robert_hsu_home"
-#define WIFI_PASSWORD "0926656000"
+#define WIFI_PASSWORD "xxxxxx"
 #define led 13
 //Define Firebase data object
 FirebaseData firebaseData;
@@ -71,7 +68,7 @@ void setup()
 
 void loop()
 {
-  String path = "iot0624/LED";
+  String path = "ledControl/state";
   if(Firebase.getBool(firebaseData,path)){
      Serial.println("getNode");
      Serial.println(firebaseData.boolData());
@@ -83,7 +80,7 @@ void loop()
   }else{
      Serial.println(firebaseData.errorReason());
   }  
-  delay(1000);
+  delay(500);
 }
 ```
 
