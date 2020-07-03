@@ -3,8 +3,8 @@
 ### 線路圖
 [![上拉電阻線路圖](led_control_bb.jpg)](led_control_bb.pdf)
 
-### 實體線路圖
-![成品](IMG_0372.jpg)
+### Firebase建立專案,並建立及時資料庫節點
+![](及時資料庫節點.png)
 
 ### 上拉電阻接線
 [![上拉電阻成品展示](https://img.youtube.com/vi/y28I-Kwlljg/2.jpg)](https://youtu.be/y28I-Kwlljg)
