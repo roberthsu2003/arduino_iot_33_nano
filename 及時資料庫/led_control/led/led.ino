@@ -6,8 +6,6 @@
  *get節點資料
 */
 
-
-
 //Example shows how to connect to Firebase RTDB and perform basic operation for set, get, push and update data to database
 
 //Required WiFiNINA Library for Arduino from https://github.com/arduino-libraries/WiFiNINA
@@ -62,10 +60,6 @@ void loop()
      }
   }else{
      Serial.println(firebaseData.errorReason());
-  }
- 
-  
-  
-  
+  }  
   delay(1000);
 }
