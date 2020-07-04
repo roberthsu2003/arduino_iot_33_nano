@@ -98,8 +98,8 @@
       var ledControl = database.ref("touchSensor/touch");
       ledControl.on("value", function (snapshot) {
         var touchValue = snapshot.val();
-        console.log(led25Value);
-        if (led25Value) {
+        console.log(touchValue);
+        if (touchValue) {
           $("#customSwitch2").val("checked")
         } else {
           $("#customSwitch2").val("")
