@@ -18,6 +18,9 @@
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
+  <!-- Bootstrap switch Button http://https://gitbrent.github.io/bootstrap4-toggle/-->
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
   <!-- Custom styles for this page -->
   <style type="text/css">
     .jumbotron h1 {
@@ -61,10 +64,7 @@
     <div class="jumbotron">
       <h1>Touch Sensor 狀態</h1>
       <h3>Touch Sensor(D12)</h3>
-      <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" disabled id="customSwitch2" checked>
-        <label class="custom-control-label" for="customSwitch2">Touch Sensor目前狀態</label>
-      </div>
+      <input type="checkbox"  data-toggle="toggle" data-size="lg" id="customSwitch2" >
     </div>
 
   </div> <!-- /container -->
@@ -91,6 +91,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
   <script>
     $(document).ready(function () {
@@ -98,12 +99,15 @@
       var ledControl = database.ref("touchSensor/touch");
       ledControl.on("value", function (snapshot) {
         var touchValue = snapshot.val();
-        console.log(touchValue);
+        $('#customSwitch2').bootstrapToggle('enable')
         if (touchValue) {
-          $("#customSwitch2").val("checked")
+          $("#customSwitch2").bootstrapToggle('on')
+          console.log(touchValue);
         } else {
-          $("#customSwitch2").val("")
+          $("#customSwitch2").bootstrapToggle('off')
+          console.log(touchValue);
         }
+        $('#customSwitch2').bootstrapToggle('disable')
       });
     });
   </script>
