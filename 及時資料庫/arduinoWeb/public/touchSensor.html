@@ -20,11 +20,6 @@
 
   <!-- Custom styles for this page -->
   <style type="text/css">
-    .btn {
-      font-size: 30px;
-      padding: 6px 30px;
-    }
-
     .jumbotron h1 {
       margin-bottom: 30px;
       color: darkgray;
@@ -34,6 +29,7 @@
       color: darkgray;
       margin-bottom: 20px;
     }
+
   </style>
 
 
@@ -66,8 +62,8 @@
       <h1>Touch Sensor 狀態</h1>
       <h3>Touch Sensor(D12)</h3>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
-        <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+        <input type="checkbox" class="custom-control-input" disabled id="customSwitch2" checked>
+        <label class="custom-control-label" for="customSwitch2">Touch Sensor目前狀態</label>
       </div>
     </div>
 
@@ -98,18 +94,15 @@
 
   <script>
     $(document).ready(function () {
-      var openBtn = $("#openBtn");
-      var closeBtn = $("#closeBtn");
-      var ledControl = database.ref("ledControl/state");
+      
+      var ledControl = database.ref("touchSensor/touch");
       ledControl.on("value", function (snapshot) {
-        var led25Value = snapshot.val();
+        var touchValue = snapshot.val();
         console.log(led25Value);
         if (led25Value) {
-          openBtn.removeClass().addClass("btn").addClass("btn-success");
-          closeBtn.removeClass().addClass("btn");
+          $("#customSwitch2").val("checked")
         } else {
-          openBtn.removeClass().addClass("btn");
-          closeBtn.removeClass().addClass("btn").addClass("btn-danger");
+          $("#customSwitch2").val("")
         }
       });
     });
