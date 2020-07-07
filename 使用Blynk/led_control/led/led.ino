@@ -4,7 +4,7 @@
 
   Blynk is a platform with iOS and Android apps to control
   Arduino, Raspberry Pi and the likes over the Internet.
-  You can easily build graphic interfaces for all your
+  You can easily build graphic interfaces for all your````
   projects by simply dragging and dropping widgets.
 
     Downloads, docs, tutorials: http://www.blynk.cc
@@ -32,15 +32,16 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
+#include "data.h"
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "查資料";
+char auth[] = AUTH;
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "robert_hsu_home";
-char pass[] = "0926656000";
+char ssid[] = SSID;
+char pass[] = PASS;
 
 void setup()
 {
