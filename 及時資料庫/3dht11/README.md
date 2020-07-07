@@ -10,11 +10,11 @@
 ![](firebaseDatabase.jpg)
 
 ### 控制網站
-https://arduinofirebase-6d104.web.app/
-![QRCode](條碼.png)
+https://arduinofirebase-6d104.web.app/  
+![QRCode](qrCode.jpg)
 
-### 及時資料庫LEDControl影片展示
-[![](https://img.youtube.com/vi/gRjMzTIt6XU/1.jpg)](https://youtu.be/gRjMzTIt6XU)
+### 及時資料庫_溫濕度檢示影片
+[![](https://img.youtube.com/vi/LHU0Ils3DUQ/1.jpg)](https://youtu.be/LHU0Ils3DUQ)
 
 
 
@@ -24,25 +24,27 @@ https://arduinofirebase-6d104.web.app/
 
 /*
  *連線Firebase realtimeDatabase
- *get節點資料
+ *get and set節點資料
 */
 
 //Example shows how to connect to Firebase RTDB and perform basic operation for set, get, push and update data to database
 //Required WiFiNINA Library for Arduino from https://github.com/arduino-libraries/WiFiNINA
+//https://github.com/mobizt/Firebase-Arduino-WiFiNINA
 
 #include "Firebase_Arduino_WiFiNINA.h"
+#include "DHT.h"
 
 #define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
-#define FIREBASE_AUTH "xxxxxxxxx"
+#define FIREBASE_AUTH "XXXXXXXXXX"
 #define WIFI_SSID "robert_hsu_home"
-#define WIFI_PASSWORD "xxxxxx"
-#define led 13
+#define WIFI_PASSWORD "XXXXXXXXXXX"
+#define dhtData 8
 //Define Firebase data object
 FirebaseData firebaseData;
+DHT dht(dhtData,DHT11);
 
 void setup()
 {
-  pinMode(led,OUTPUT);
   Serial.begin(9600);
   delay(100);
   Serial.println();
@@ -63,25 +65,49 @@ void setup()
   //Provide the autntication data
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH, WIFI_SSID, WIFI_PASSWORD);
   Firebase.reconnectWiFi(true);
+
+  //DHTinit
+  dht.begin();
 }
 
  
 
 void loop()
 {
-  String path = "ledControl/state";
-  if(Firebase.getBool(firebaseData,path)){
-     Serial.println("getNode");
-     Serial.println(firebaseData.boolData());
-     if(firebaseData.boolData()){
-      digitalWrite(led,HIGH);
-     }else{
-      digitalWrite(led,LOW);
-     }
+  float h = dht.readHumidity();//讀取濕度
+  float t = dht.readTemperature();//讀取攝氏溫度
+  float f = dht.readTemperature(true);//讀取華氏溫度
+  if (isnan(h) || isnan(t) || isnan(f)) {
+    Serial.println("無法從DHT傳感器讀取！");    
+  }
+  Serial.print("濕度: ");
+  Serial.print(h);
+  Serial.print("%\t");
+  Serial.print("攝氏溫度: ");
+  Serial.print(t);
+  Serial.print("*C\t");
+  Serial.print("華氏溫度: ");
+  Serial.print(f);
+  Serial.print("*F\n");
+  
+  String humidityPath = "DHT11/humidity";
+  String temperaturePath = "DHT11/temperature";
+
+  if(Firebase.setFloat(firebaseData,humidityPath,h)){
+    if(firebaseData.dataType() == "float")
+      Serial.println(firebaseData.floatData());
   }else{
-     Serial.println(firebaseData.errorReason());
-  }  
-  delay(500);
+    Serial.println(firebaseData.errorReason());
+  }
+
+  if(Firebase.setFloat(firebaseData,temperaturePath,t)){
+    if(firebaseData.dataType() == "float")
+      Serial.println(firebaseData.floatData());
+  }else{
+    Serial.println(firebaseData.errorReason());
+  }
+ 
+  delay(2000);
 }
 ```
 
