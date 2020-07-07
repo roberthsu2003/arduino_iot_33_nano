@@ -1,19 +1,19 @@
 # 可變電阻和Blynk
 ## 學習讓Arduino_可變電阻和Blynk手機App連線
 ### 線路圖
-![](led_control_bb.jpg)
+![](resistance_bb.jpg)
 
 ### 實體線路圖
-![](IMG_0403.png)
+![](IMG_0429.jpg)
 
 ### Blynk App內設定專案
-![](IMG_0424.png)
+![](IMG_61C.jpeg)
 
 ### Blynk App專案畫面 
-![](IMG_6952.jpeg)
+![](IMG_55C.jpeg)
 
 ### 及時資料庫_溫濕度檢示影片
-[![](https://img.youtube.com/vi/LHU0Ils3DUQ/1.jpg)](https://youtu.be/LHU0Ils3DUQ)
+[![](https://img.youtube.com/vi/HcMJ3wTrjPE/2.jpg)](https://youtu.be/HcMJ3wTrjPE)
 
 
 
