@@ -1,7 +1,7 @@
-# 可變電阻和Blynk
-## 學習讓Arduino_可變電阻和Blynk手機App連線
+# 聲音感測器和Blynk
+## 學習讓Arduino_聲音感測器和Blynk手機App連線
 ### 線路圖
-![](resistance_bb.jpg)
+![](sound_bb.jpg)
 
 ### 實體線路圖
 ![](IMG_0429.jpg)

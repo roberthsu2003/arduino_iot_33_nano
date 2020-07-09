@@ -27,13 +27,13 @@
  *************************************************************/
 
 /* Comment this out to disable prints and save space */
-#define BLYNK_PRINT Serial
-
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
 #include "data.h"
 
+#define ledPin 13
+#define sensor_d12 12
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = AUTH;
@@ -43,18 +43,40 @@ char auth[] = AUTH;
 char ssid[] = SSID;
 char pass[] = PASS;
 
+BlynkTimer timer;
+WidgetLED led0(V0);
+bool preValue = false;
+
 void setup()
 {
   // Debug console
   Serial.begin(9600);
-
+  pinMode(ledPin, OUTPUT);
+  pinMode(sensor_d12, INPUT);
   Blynk.begin(auth, ssid, pass);
-  // You can also specify server:
-  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
+  timer.setInterval(100, myTimerEvent);
 }
 
 void loop()
 {
   Blynk.run();
+  timer.run();
+
+}
+
+void myTimerEvent() {
+  bool sensorValue = digitalRead(sensor_d12);
+  //必需調整,沒有磁鐵時,輸出為1
+  Serial.println(sensorValue);
+  if (sensorValue != preValue) {
+    if (sensorValue == 0) {
+      led0.on();
+      digitalWrite(ledPin, HIGH);
+    } else {
+      led0.off();
+      digitalWrite(ledPin, LOW);
+    }
+    preValue = sensorValue;
+  }
+
 }

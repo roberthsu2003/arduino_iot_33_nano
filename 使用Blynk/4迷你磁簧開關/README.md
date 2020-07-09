@@ -1,19 +1,19 @@
-# 可變電阻和Blynk
-## 學習讓Arduino_可變電阻和Blynk手機App連線
+# 迷你磁簧開關和Blynk
+## 學習讓Arduino_迷你磁簧開關和Blynk手機App連線
 ### 線路圖
-![](resistance_bb.jpg)
+![](reedSwitch_bb.jpg)
 
 ### 實體線路圖
-![](IMG_0429.jpg)
+![](IMG_0435.jpg)
 
 ### Blynk App內設定專案
-![](IMG_61C.jpeg)
+![](IMG_1BF.jpeg)
 
 ### Blynk App專案畫面 
-![](IMG_55C.jpeg)
+![](IMG_CD55.jpeg)
 
 ### Blynk_可變電阻影片
-[![](https://img.youtube.com/vi/HcMJ3wTrjPE/2.jpg)](https://youtu.be/HcMJ3wTrjPE)
+[![](https://img.youtube.com/vi/JEFEs4sPM48/2.jpg)](https://youtu.be/JEFEs4sPM48)
 
 
 
@@ -47,13 +47,13 @@
  *************************************************************/
 
 /* Comment this out to disable prints and save space */
-#define BLYNK_PRINT Serial
-
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
 #include "data.h"
 
+#define ledPin 13
+#define sensor_d12 12
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = AUTH;
@@ -63,20 +63,36 @@ char auth[] = AUTH;
 char ssid[] = SSID;
 char pass[] = PASS;
 
+BlynkTimer timer;
+WidgetLED led0(V0);
 void setup()
 {
   // Debug console
-  Serial.begin(9600);
-
+  Serial.begin(9600);  
+  pinMode(ledPin, OUTPUT);
+  pinMode(sensor_d12, INPUT);
   Blynk.begin(auth, ssid, pass);
-  // You can also specify server:
-  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
+  timer.setInterval(100, myTimerEvent);
 }
 
 void loop()
 {
   Blynk.run();
+  timer.run();
+  
+}
+
+void myTimerEvent(){  
+  int sensorValue = digitalRead(sensor_d12);
+  //必需調整,沒有磁鐵時,輸出為1
+  Serial.println(sensorValue);
+  if(sensorValue==0){
+     led0.on();
+     digitalWrite(ledPin,HIGH);
+  }else{
+    led0.off();
+    digitalWrite(ledPin,LOW);
+  }
 }
 ```
 

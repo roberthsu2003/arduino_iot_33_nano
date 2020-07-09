@@ -1,23 +1,3 @@
-# 可變電阻和Blynk
-## 學習讓Arduino_可變電阻和Blynk手機App連線
-### 線路圖
-![](resistance_bb.jpg)
-
-### 實體線路圖
-![](IMG_0429.jpg)
-
-### Blynk App內設定專案
-![](IMG_61C.jpeg)
-
-### Blynk App專案畫面 
-![](IMG_55C.jpeg)
-
-### Blynk_可變電阻影片
-[![](https://img.youtube.com/vi/HcMJ3wTrjPE/2.jpg)](https://youtu.be/HcMJ3wTrjPE)
-
-
-
-```C++
 /*************************************************************
   Download latest Blynk library here:
     https://github.com/blynkkk/blynk-library/releases/latest
@@ -47,13 +27,13 @@
  *************************************************************/
 
 /* Comment this out to disable prints and save space */
-#define BLYNK_PRINT Serial
-
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
 #include "data.h"
 
+#define ledPin 13
+#define sound_a0 A0
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = AUTH;
@@ -63,20 +43,25 @@ char auth[] = AUTH;
 char ssid[] = SSID;
 char pass[] = PASS;
 
+BlynkTimer timer;
+
 void setup()
 {
   // Debug console
-  Serial.begin(9600);
-
+  Serial.begin(9600);  
+  pinMode(ledPin, OUTPUT);
   Blynk.begin(auth, ssid, pass);
-  // You can also specify server:
-  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
+  timer.setInterval(1000, myTimerEvent);
 }
 
 void loop()
 {
   Blynk.run();
+  timer.run();
 }
-```
 
+void myTimerEvent(){
+  int soundValue = analogRead(sound_a0);
+  Serial.println(soundValue);       //在監控視窗顯示讀取的值
+  delay(10);
+}
