@@ -1,3 +1,19 @@
+# 陀螺儀
+- 陀螺儀，用來感測與維持方向的裝置。
+- 陀螺儀多用於導航、定位等系統。
+## 學習如何利用Arduino內的LSM6DS3晶片，和操控該晶片的內建陀螺儀
+### 線路圖
+![](simpleGyroscope_bb.jpg)
+
+### 接線成品
+![](IMG_0403.png)
+
+### 陀螺儀應用影片
+[![](https://img.youtube.com/vi/0CXmMm5olYQ/1.jpg)](https://youtu.be/0CXmMm5olYQ)
+
+### 偵測Arduino被移動就亮燈  
+
+```C++
 /*
  * 偵測Arduino被移動，只要被移動就亮燈
  */
@@ -77,3 +93,6 @@ void ledOnOff(){
   delay(500);
   digitalWrite(ledPin,LOW);
 }
+
+```
+
