@@ -8,7 +8,7 @@
 ![](simpleAccelerometer_bb.png)
 
 ### 加速度計應用影片
-[![](https://img.youtube.com/vi/0CXmMm5olYQ/1.jpg)](https://youtu.be/0CXmMm5olYQ)
+[![](https://img.youtube.com/vi/A9281ewCfgc/1.jpg)](https://youtu.be/A9281ewCfgc)
 
 ### 偵測Arduino目前原地位置的狀態 
 
@@ -34,7 +34,7 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  
 
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
