@@ -1,3 +1,18 @@
+# 加速度計(accelerometer)
+- 又稱加速計、加速針、加速度感測器、重力加速度感測器等等
+- 加速規的應用之一是測量重力，特別是使用於重量測定法的加速規上，這樣的裝置稱為重力計。
+- 觀察加速度感測器所量測出加速度感測值x、y、z的變化
+## 學習如何利用Arduino內的LSM6DS3晶片，和操控該晶片的內建加速度計
+![](content.png)
+### 線路圖
+![](simpleAccelerometer_bb.png)
+
+### 加速度計應用影片
+[![](https://img.youtube.com/vi/0CXmMm5olYQ/1.jpg)](https://youtu.be/0CXmMm5olYQ)
+
+### 偵測Arduino目前原地位置的狀態 
+
+```C++
 //觀察x,y,z軸的變化
 /*
   Arduino LSM6DS3 - Simple Accelerometer
@@ -71,3 +86,5 @@ void loop() {
   }
   delay(1000);
 }
+```
+
