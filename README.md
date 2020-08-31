@@ -36,10 +36,10 @@
 1. [收集資料，繪制圖表](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8ThingSpeak)
 
 ## mackerel.io 服務
-1.及時監控服務平台
+1.[及時監控服務平台](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8mackerel)
 
 ## Arduino當作WebServer
-1.Web Service
+1.[Web Service](https://github.com/roberthsu2003/smartHome/tree/master/%E7%95%B6%E4%BD%9CWebServer)
 
 
 ## 使用arduino nano 33 iot說明
