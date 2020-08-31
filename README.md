@@ -32,10 +32,10 @@
 ## IFTTT服務
 1. [Arduino發送溫溼度訊息給line群組](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8IFTTT/1dht11)
 
-## ThingSpeak web Service
-1.收集資料，繪制圖表
+## ThingSpeak 服務
+1. [收集資料，繪制圖表](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8ThingSpeak)
 
-## mackerel.io 服數
+## mackerel.io 服務
 1.及時監控服務平台
 
 ## Arduino當作WebServer
