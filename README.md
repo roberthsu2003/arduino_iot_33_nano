@@ -27,10 +27,10 @@
 3. [網頁監控環境溫溼度](https://github.com/roberthsu2003/smartHome/tree/master/%E5%8F%8A%E6%99%82%E8%B3%87%E6%96%99%E5%BA%AB/3dht11) 
 
 ## LihgtBlue手機藍牙app
-1. 手機藍牙控制LED
+1. [手機藍牙控制LED](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8%E8%97%8D%E7%89%99/1led_control)
 
 ## IFTTT服務
-1. Arduino發送溫溼度訊息給line群組
+1. [Arduino發送溫溼度訊息給line群組](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8IFTTT/1dht11)
 
 ## ThingSpeak web Service
 1.收集資料，繪制圖表
