@@ -1,25 +1,17 @@
-// Firebase
+// 使用IFTTTu
 // 使用arduino nano 33 iot
 
 /*
  *連線Firebase realtimeDatabase
  *get節點資料
 */
-
-//Example shows how to connect to Firebase RTDB and perform basic operation for set, get, push and update data to database
-//Required WiFiNINA Library for Arduino from https://github.com/arduino-libraries/WiFiNINA
-//https://github.com/mobizt/Firebase-Arduino-WiFiNINA
-
-#include "Firebase_Arduino_WiFiNINA.h"
+#include <SPI.h>
+#include <WiFiNINA.h>
+#include "data.h"
 #include "DHT.h"
 
-#define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
-#define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"
-#define WIFI_SSID "robert_hsu_home"
-#define WIFI_PASSWORD "0926656000"
 #define dhtData 8
-//Define Firebase data object
-FirebaseData firebaseData;
+
 DHT dht(dhtData,DHT11);
 
 void setup()
@@ -39,11 +31,7 @@ void setup()
   Serial.println();
   Serial.print("Connected with IP: ");
   Serial.println(WiFi.localIP());
-  Serial.println();
-
-  //Provide the autntication data
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH, WIFI_SSID, WIFI_PASSWORD);
-  Firebase.reconnectWiFi(true);
+  Serial.println();  
 
   //DHTinit
   dht.begin();
@@ -69,22 +57,5 @@ void loop()
   Serial.print(f);
   Serial.print("*F\n");
   
-  String humidityPath = "DHT11/humidity";
-  String temperaturePath = "DHT11/temperature";
-
-  if(Firebase.setFloat(firebaseData,humidityPath,h)){
-    if(firebaseData.dataType() == "float")
-      Serial.println(firebaseData.floatData());
-  }else{
-    Serial.println(firebaseData.errorReason());
-  }
-
-  if(Firebase.setFloat(firebaseData,temperaturePath,t)){
-    if(firebaseData.dataType() == "float")
-      Serial.println(firebaseData.floatData());
-  }else{
-    Serial.println(firebaseData.errorReason());
-  }
- 
   delay(2000);
 }

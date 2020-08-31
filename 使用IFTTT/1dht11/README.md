@@ -1,17 +1,18 @@
 # 使用IFTTT讓Arduino發送溫溼度訊息給line群組
-## 學習讓Arduino及時讀取資料,並讓網頁及時顯示溫濕度
+## 讓Arduino的DHT11發送訊息給WebHook,再由WebHook轉送給Line群組 
 ### 線路圖
 [![](dht11_bb.jpg)](led_control_bb.pdf)
 
 ### 實體線路圖
 ![](IMG_0411.jpg)
 
-### Firebase建立專案,並建立及時資料庫節點
-![](firebaseDatabase.jpg)
+### 在IFTTT網站設立一個Applet
+![](IFTTT_DHT11.png)
 
-### 控制網站
-https://arduinofirebase-6d104.web.app/  
-![QRCode](qrCode.jpg)
+
+### Line溫濕度警告-測試群組
+![](line_group.jpeg)
+
 
 ### 及時資料庫_溫濕度檢示影片
 [![](https://img.youtube.com/vi/LHU0Ils3DUQ/1.jpg)](https://youtu.be/LHU0Ils3DUQ)
