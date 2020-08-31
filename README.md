@@ -42,7 +42,7 @@
 1.[Web Service](https://github.com/roberthsu2003/smartHome/tree/master/%E7%95%B6%E4%BD%9CWebServer)
 
 
-## 使用arduino nano 33 iot說明
+## arduino nano 33 iot使用說明
 ![aruduon_nano_33_iot_with_header](abx00032_iso.jpg)
 
 
