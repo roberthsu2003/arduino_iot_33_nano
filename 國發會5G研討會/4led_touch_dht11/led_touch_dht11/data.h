@@ -2,3 +2,5 @@
 #define EVENNAME "over30"
 #define WIFI_SSID "robert_hsu_home"
 #define WIFI_PASSWORD "0926656000"
+#define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
+#define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"

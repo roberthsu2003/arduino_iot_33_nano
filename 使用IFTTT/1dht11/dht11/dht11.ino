@@ -16,7 +16,7 @@ int status = WL_IDLE_STATUS;
 char server[] = "maker.ifttt.com";
 WiFiSSLClient client;
 
-unsigned long getTime = micros();
+unsigned long getTime1 = micros();
 
 void setup()
 {
@@ -76,7 +76,7 @@ void loop()
   delay(2000);
   //如果濕度超過90,發送line訊息
   unsigned long currentTime = micros();
-  if (currentTime - getTime > 30000 && h > 90) {
+  if (currentTime - getTime1 > 30000 && h > 80) {
     //連線ifttt
     if (client.connect(server, 443)) {
       Serial.println("connected to server");
@@ -87,7 +87,7 @@ void loop()
       client.println();
       
     }
-    getTime = currentTime;
+    getTime1 = currentTime;
 
   }
 }
