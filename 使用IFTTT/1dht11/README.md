@@ -20,7 +20,7 @@
 
 
 ```C++
-// 使用IFTTTu
+// 使用IFTTT
 // 使用arduino nano 33 iot
 
 /*
