@@ -1,21 +1,15 @@
-int buttonPin = 2;
-int buttonState = 0; 
-int ledPin = 13;
 void setup()
 {
   Serial.begin(9600);
-  pinMode(buttonPin, INPUT);
-  pinMode(ledPin, OUTPUT);
+  pinMode(2,INPUT_PULLUP);
 }
 
 void loop()
 {
-	buttonState	= digitalRead(buttonPin);
-  if(buttonState == 1){
-    Serial.println("press");
-    digitalWrite(ledPin, HIGH);
-  }else{
+  int sensorVal = digitalRead(2);
+  if(sensorVal == 1){
     Serial.println("release");
-    digitalWrite(ledPin, LOW);
+  }else{
+    Serial.println("press");
   }
 }
