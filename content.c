@@ -37,4 +37,11 @@ void setup()
 
 void loop()
 {
+  String path = "ledControl/state";
+  if(Firebase.getBool(firebaseData,path)){
+    Serial.println(firebaseData.boolData());
+  }else{
+    Serial.println(firebaseData.errorReason());
+  }
+  delay(500);
 }
