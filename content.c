@@ -1,9 +1,9 @@
 #include "Firebase_Arduino_WiFiNINA.h"
 
-#define FIREBASE_HOST ""
-#define FIREBASE_AUTH ""
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
+#define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"
+#define WIFI_SSID "RobertIphone"
+#define WIFI_PASSWORD "0926656000"
 #define led 13
 
 //Define Firebase data object
