@@ -4,6 +4,7 @@
 #define FIREBASE_AUTH ""
 #define WIFI_SSID ""
 #define WIFI_PASSWORD ""
+#define led 13
 
 //Define Firebase data object
 FirebaseData firebaseData;
@@ -11,6 +12,7 @@ FirebaseData firebaseData;
 void setup()
 {
 
+  pinMode(led,OUTPUT);
   Serial.begin(9600);
   delay(100);
   Serial.println();
@@ -40,6 +42,11 @@ void loop()
   String path = "ledControl/state";
   if(Firebase.getBool(firebaseData,path)){
     Serial.println(firebaseData.boolData());
+    if(firebaseData.boolData()){
+      digitalWrite(led,HIGH);
+    }else{
+      digitalWrite(led,LOW);
+    }
   }else{
     Serial.println(firebaseData.errorReason());
   }
