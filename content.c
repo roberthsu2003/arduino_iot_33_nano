@@ -1,10 +1,12 @@
+
 #include "Firebase_Arduino_WiFiNINA.h"
 
-#define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
+#define FIREBASE_HOST ""
 #define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"
 #define WIFI_SSID "RobertIphone"
 #define WIFI_PASSWORD "0926656000"
 #define led 13
+#define touchSensor 12
 
 //Define Firebase data object
 FirebaseData firebaseData;
@@ -13,6 +15,7 @@ void setup()
 {
 
   pinMode(led,OUTPUT);
+  pinMode(touchSensor, INPUT);
   Serial.begin(9600);
   delay(100);
   Serial.println();
@@ -39,16 +42,7 @@ void setup()
 
 void loop()
 {
-  String path = "ledControl/state";
-  if(Firebase.getBool(firebaseData,path)){
-    Serial.println(firebaseData.boolData());
-    if(firebaseData.boolData()){
-      digitalWrite(led,HIGH);
-    }else{
-      digitalWrite(led,LOW);
-    }
-  }else{
-    Serial.println(firebaseData.errorReason());
-  }
-  delay(500);
+ bool currentState = digitalRead(touchSensor);
+ Serial.println(currentState);
+ delay(1);
 }
