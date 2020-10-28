@@ -1,9 +1,11 @@
 
 #include "Firebase_Arduino_WiFiNINA.h"
 #include "DHT.h"
+#include "Thread.h"
+#include "ThreadController.h"
 
 #define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
-#define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"
+#define FIREBASE_AUTH ""
 #define WIFI_SSID "RobertIphone"
 #define WIFI_PASSWORD "0926656000"
 #define led 13
@@ -17,6 +19,11 @@ DHT dht(dhtData,DHT11);
 bool currentState;
 String path = "touchSensor/touch";
 
+//時間管理
+ThreadController controller = ThreadController();
+Thread DHTThread = Thread();
+Thread TouchThread = Thread();
+
 void setup()
 {
 
@@ -26,6 +33,15 @@ void setup()
   Serial.begin(9600);
   delay(100);
   Serial.println();
+
+  //啟動時間管理
+  DHTThread.onRun(DHTCallBack);
+  DHTThread.setInterval(3000);
+  controller.add(&DHTThread);
+  
+  TouchThread.onRun(TouchCallBack);
+  TouchThread.setInterval(100);
+  controller.add(&TouchThread);
 
   Serial.print("Connecting to Wi-Fi");
   int status = WL_IDLE_STATUS;
@@ -51,8 +67,27 @@ void setup()
 
 void loop()
 {
-  //touch
-  bool state = digitalRead(touchSensor);
+ controller.run();  
+}
+
+
+
+
+void DHTCallBack(){
+  Serial.println("DHT");
+  float t=dht.readTemperature();
+  float h= dht.readHumidity();
+  if(isnan(t) || isnan(h)){
+    Serial.println("無法從DHT讀取資料");
+  }else{
+    Serial.println(t);
+    Serial.println(h);
+  }
+}
+
+void TouchCallBack(){
+   Serial.println("Touch");
+    bool state = digitalRead(touchSensor);
   Serial.println(currentState);
   if (state != currentState) {
     currentState = state;
@@ -66,16 +101,4 @@ void loop()
     }
   }
 
-  //dht11
-  float t=dht.readTemperature();
-  float h= dht.readHumidity();
-  if(isnan(t) || isnan(h)){
-    Serial.println("無法從DHT讀取資料");
-  }else{
-    Serial.println(t);
-    Serial.println(h);
-  }
-  
-  
-  delay(1);
 }
