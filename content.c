@@ -3,7 +3,7 @@
 #include "DHT.h"
 
 #define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
-#define FIREBASE_AUTH ""
+#define FIREBASE_AUTH "z5lPWwjZLZuNNcUEelbJdiNaIvnR2Zfq49BuQBAa"
 #define WIFI_SSID "RobertIphone"
 #define WIFI_PASSWORD "0926656000"
 #define led 13
@@ -68,6 +68,14 @@ void loop()
 
   //dht11
   float t=dht.readTemperature();
-  Serial.println(t);
+  float h= dht.readHumidity();
+  if(isnan(t) || isnan(h)){
+    Serial.println("無法從DHT讀取資料");
+  }else{
+    Serial.println(t);
+    Serial.println(h);
+  }
+  
+  
   delay(1);
 }
