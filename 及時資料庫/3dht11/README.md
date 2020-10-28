@@ -38,7 +38,7 @@ https://arduinofirebase-6d104.web.app/
 #define FIREBASE_AUTH "XXXXXXXXXX"
 #define WIFI_SSID "robert_hsu_home"
 #define WIFI_PASSWORD "XXXXXXXXXXX"
-#define dhtData 8
+#define dhtData 11
 //Define Firebase data object
 FirebaseData firebaseData;
 DHT dht(dhtData,DHT11);
