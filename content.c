@@ -74,6 +74,9 @@ void loop()
 
 
 void DHTCallBack(){
+  String humidityPath = "DHT11/humidity";
+  String temperaturePath = "DHT11/temperature";
+  
   Serial.println("DHT");
   float t=dht.readTemperature();
   float h= dht.readHumidity();
@@ -82,6 +85,13 @@ void DHTCallBack(){
   }else{
     Serial.println(t);
     Serial.println(h);
+    if(Firebase.setFloat(firebaseData,humidityPath,h) && Firebase.setFloat(firebaseData,temperaturePath,t)){
+      
+    }else{
+      Serial.println("Firebase DHT錯誤:");
+      Serial.println(firebaseData.errorReason());
+    }
+    
   }
 }
 
