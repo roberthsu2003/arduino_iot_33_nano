@@ -11,11 +11,12 @@
 //Define Firebase data object
 FirebaseData firebaseData;
 bool currentState;
+String path = "touchSensor/touch";
 
 void setup()
 {
 
-  pinMode(led,OUTPUT);
+  pinMode(led, OUTPUT);
   pinMode(touchSensor, INPUT);
   Serial.begin(9600);
   delay(100);
@@ -41,13 +42,21 @@ void setup()
   currentState = digitalRead(touchSensor);
 }
 
+
+
 void loop()
 {
- bool state = digitalRead(touchSensor);
- Serial.println(currentState);
- if(state != currentState){
-   currentState = state;
-   Serial.println("上傳");
- }
- delay(1000);
+  bool state = digitalRead(touchSensor);
+  Serial.println(currentState);
+  if (state != currentState) {
+    currentState = state;
+    Serial.println("上傳");
+    if (Firebase.setBool(firebaseData, path, state)) {
+      Serial.print("上傳成功");
+    } else {
+      Serial.print("Firebase存取失敗");
+      Serial.print(firebaseData.errorReason());
+    }
+  }
+  delay(1);
 }
