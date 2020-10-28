@@ -11,6 +11,8 @@
 #define led 13
 #define touchSensor 12
 #define dhtData 11
+#define EVENNAME "over30"
+#define KEY ""
 //Define Firebase data object
 
 FirebaseData firebaseData;
@@ -23,6 +25,9 @@ String path = "touchSensor/touch";
 ThreadController controller = ThreadController();
 Thread DHTThread = Thread();
 Thread TouchThread = Thread();
+
+//ifttt
+unsigned long getTime1 = millis();
 
 void setup()
 {
@@ -86,7 +91,23 @@ void DHTCallBack(){
     Serial.println(t);
     Serial.println(h);
     if(Firebase.setFloat(firebaseData,humidityPath,h) && Firebase.setFloat(firebaseData,temperaturePath,t)){
-      
+      unsigned long currentTime = millis();
+     if ((currentTime - getTime1 > 30000) && h > 90){
+      Serial.println("準備連線IFTTT");
+      //ssl連線初始化
+      WiFiSSLClient client = firebaseData.getWiFiClient();
+      int status = WL_IDLE_STATUS;
+      char server[] = "maker.ifttt.com";
+
+      if(client.connect(server,443)){
+        Serial.println("connected to IFTTT");
+        client.println("GET /trigger/" + String(EVENNAME) + "/with/key/" + String(KEY) + "?value1=" + String(t) + "&value2=" + String(h) + " HTTP/1.1");
+        client.println("Host:maker.ifttt.com");
+        client.println("Connection:close");
+        client.println();
+      }
+      getTime1 = currentTime;
+     }
     }else{
       Serial.println("Firebase DHT錯誤:");
       Serial.println(firebaseData.errorReason());
