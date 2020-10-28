@@ -1,5 +1,6 @@
 
 #include "Firebase_Arduino_WiFiNINA.h"
+#include "DHT.h"
 
 #define FIREBASE_HOST "arduinofirebase-6d104.firebaseio.com"
 #define FIREBASE_AUTH ""
@@ -7,9 +8,12 @@
 #define WIFI_PASSWORD "0926656000"
 #define led 13
 #define touchSensor 12
-
+#define dhtData 11
 //Define Firebase data object
+
 FirebaseData firebaseData;
+DHT dht(dhtData,DHT11);
+
 bool currentState;
 String path = "touchSensor/touch";
 
@@ -18,6 +22,7 @@ void setup()
 
   pinMode(led, OUTPUT);
   pinMode(touchSensor, INPUT);
+  dht.begin();
   Serial.begin(9600);
   delay(100);
   Serial.println();
@@ -46,10 +51,12 @@ void setup()
 
 void loop()
 {
+  //touch
   bool state = digitalRead(touchSensor);
   Serial.println(currentState);
   if (state != currentState) {
     currentState = state;
+    digitalWrite(led, state);
     Serial.println("上傳");
     if (Firebase.setBool(firebaseData, path, state)) {
       Serial.print("上傳成功");
@@ -58,5 +65,9 @@ void loop()
       Serial.print(firebaseData.errorReason());
     }
   }
+
+  //dht11
+  float t=dht.readTemperature();
+  Serial.println(t);
   delay(1);
 }
