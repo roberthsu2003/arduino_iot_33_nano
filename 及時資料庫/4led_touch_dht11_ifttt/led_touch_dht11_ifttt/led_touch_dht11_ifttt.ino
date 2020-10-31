@@ -144,7 +144,7 @@ void DHTcallBack(){
   Serial.println("currentTime:"+String(currentTime));
   Serial.println("getTime1:"+String(getTime1));
   Serial.println("intervalTime:"+String(currentTime-getTime1));
-  if ((currentTime - getTime1 > 30000) && h > 80) {
+  if ((currentTime - getTime1 > 30000) && h > 90 && t > 28) {
     //連線ifttt
     Serial.println("準備連線IFTTT");
     //ssl連線初始化
