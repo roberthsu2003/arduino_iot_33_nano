@@ -1,23 +1,3 @@
-## 使用ThingSpeak web service
-### [ThingSpeak Setup](https://community.thingspeak.com/tutorials/arduino/using-the-arduino-mkr1000-with-thingspeak/)
-
-ThingSpeak 需要一個帳號和channel. 我們發送資料給channel,而ThingSpeak將會儲存資料. 每個channel有8個欄位包括位置欄位和狀態欄位.可以最快每15秒傳資料一次，但最佳的狀態是每一分鐘傳一次資料 
-
-- 登入thingspeak – https://thingspeak.com/users/sign_up
-- 建立一個channel
-- 建立溫度和溼度欄位
-
-![](images/image1.png)
-- 完成設定後，取得ChannelID和APIKeys
-
-### 線路圖
-[![](images/dht11_bb.jpg)](images/led_control_bb.pdf)
-
-### 實體線路圖
-![](images/IMG_0411.jpg)
-
-### 程式碼
-```
 
 /*
   Web client
@@ -169,37 +149,3 @@ void printWifiStatus() {
   Serial.print(rssi);
   Serial.println(" dBm");
 }
-
-```
-
-### 至ThingSpeak Channel看結果
-![](images/image3.png)
-
-### 自訂MATLAB Visualization
-
-在channel 內自訂一個MATLAB Visualizations
-- 按下new
-- 選擇“Custom (no starter code)"
-- 按下建立
-
-```
-readChannelID = 93156;
-fieldID1 = 1;
-
-readAPIKey = 'MCI6XM81ZFOY8UCE';
-
-%% Read Data %%
-[data, time] = thingSpeakRead(readChannelID, 'Field', fieldID1, 'NumPoints', 10, 'ReadKey', readAPIKey);
-
-%% Visualize Data %%
-plot(time, data);
-```
-
-
-- 按下Run and Save
-- 取得公開的網址 - https://thingspeak.com/apps/matlab_visualizations/373131
-
-
-
-
-
