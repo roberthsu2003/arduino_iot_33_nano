@@ -11,4 +11,14 @@
 4. ### 40P 杜邦線 母-母 10CM
 ![](./images/G3020052-A.jpg) 
 
-5.
+5. ### 按壓開關 12X12 4PIN
+![](./images/pic1.jpeg)
+
+6. ### 電阻 1/4W 220歐姆
+![](./images/pic2.png)
+
+7. ### 電阻 1/4W 10K歐姆
+![](./images/pic3.png)
+
+
+
