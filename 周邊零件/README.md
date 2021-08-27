@@ -71,3 +71,6 @@
 
 20. MFRC522 RFID(購買要pin腳已經焊好)
 ![](./images/abce85.jpg)
+
+21. 迷你磁簧開關
+![](./images/6xf4x0500x0500-m.jpg)
