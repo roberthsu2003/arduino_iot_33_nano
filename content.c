@@ -1,9 +1,22 @@
-void setup(){
-  //只執行一次
+// C++ code
+//
+void setup()
+{
+  int english;	
   Serial.begin(9600);
-  Serial.println("Hello, Arduino");
+  	Serial.println("english Score:");
+    while(true){
+      if(Serial.available()){
+        english = Serial.parseInt();
+        break;
+      }
+      
+    }
+  Serial.print("Hello!your english is ");
+  Serial.println(english);
 }
 
-void loop(){
-  //一直執行
+void loop()
+{
+  
 }
