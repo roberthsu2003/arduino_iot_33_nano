@@ -1,20 +1,16 @@
 // C++ code
 //
+#define redled 11
 
-#define pi 3.14159
-
-int area;
 void setup()
-{	
-    
-    Serial.begin(9600);    
-    int radius = 10;
-    area = radius * radius * pi;	
+{
+  pinMode(redled,OUTPUT);
 }
 
 void loop()
 {
-  Serial.print("area=");
-  Serial.println(area);
+  digitalWrite(redled,HIGH);
+  delay(1000);
+  digitalWrite(redled,LOW);
   delay(1000);
 }
