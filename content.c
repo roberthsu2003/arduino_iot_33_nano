@@ -2,18 +2,13 @@
 //
 void setup()
 {
-  int english;	
-  Serial.begin(9600);
-  	Serial.println("english Score:");
-    while(true){
-      if(Serial.available()){
-        english = Serial.parseInt();
-        break;
-      }
-      
-    }
-  Serial.print("Hello!your english is ");
-  Serial.println(english);
+	int area;
+    Serial.begin(9600);
+    float pi = 3.14159;
+    int radius = 10;
+    area = radius * radius * pi;
+	Serial.print("area=");
+    Serial.println(area);
 }
 
 void loop()
