@@ -16,6 +16,7 @@ Arduino Nano 33 IoT
 5. [xyz軸感測](https://github.com/roberthsu2003/smartHome/tree/master/%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C/5xyz%E8%BB%B8%E6%84%9F%E6%B8%AC)
 
 ## Blynk網路服務
+### [Blynk說明](./使用Blynk)
 1. [手機控制LED動作](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8Blynk/1led_control)
 
 2. [手機顯示可變電阻動作](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8Blynk/2%E5%8F%AF%E8%AE%8A%E9%9B%BB%E9%98%BB)
