@@ -31,7 +31,7 @@
 
 #include <SPI.h>
 #include <WiFiNINA.h>
-#include <BlynkSimpleWiFiNINA.h>
+#include <BlynkSimpleWiFiNINA.h> //這個library下載位置https://github.com/blynkkk/blynk-library
 #include "data.h"
 
 // You should get Auth Token in the Blynk App.
