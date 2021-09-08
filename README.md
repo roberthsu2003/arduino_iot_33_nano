@@ -23,9 +23,7 @@ Arduino Nano 33 IoT
 
 2. [手機顯示可變電阻動作](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8Blynk/2%E5%8F%AF%E8%AE%8A%E9%9B%BB%E9%98%BB)
 
-3. [手機顯示環境音量](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8Blynk/3%E8%81%B2%E9%9F%B3%E6%84%9F%E6%B8%AC%E5%99%A8(%E4%B8%8D%E6%BA%96))
-
-4. [手機當作門窗防盜器](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8Blynk/4%E8%BF%B7%E4%BD%A0%E7%A3%81%E7%B0%A7%E9%96%8B%E9%97%9C)
+3. [手機當作門窗防盜器](./使用Blynk/3迷你磁簧開關/)
 
 ## 及時資料庫
 1. [網頁顯示LED狀態](https://github.com/roberthsu2003/smartHome/tree/master/%E5%8F%8A%E6%99%82%E8%B3%87%E6%96%99%E5%BA%AB/1led_control)
