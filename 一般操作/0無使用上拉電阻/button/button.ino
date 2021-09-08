@@ -4,14 +4,14 @@
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(btn, INPUT_PULLUP);
+  pinMode(btn, INPUT);
   pinMode(led, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   int sensorVal = digitalRead(btn);
-  if(sensorVal == LOW)
+  if(sensorVal == HIGH)
     digitalWrite(led,HIGH);
   else
     digitalWrite(led,LOW);
