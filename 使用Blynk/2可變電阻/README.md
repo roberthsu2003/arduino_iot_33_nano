@@ -7,6 +7,8 @@
 ![](IMG_0429.jpg)
 
 ### Blynk App內設定專案
+### App內,板子的設定必需設定為Arduino nano(因為腳位和Arduino nano 33 iot相同)
+### 使用displays Value Display
 ![](IMG_61C.jpeg)
 
 ### Blynk App專案畫面 
@@ -14,7 +16,6 @@
 
 ### Blynk_可變電阻影片
 [![](https://img.youtube.com/vi/HcMJ3wTrjPE/2.jpg)](https://youtu.be/HcMJ3wTrjPE)
-
 
 
 ```C++

@@ -13,6 +13,6 @@
 ### 3. [安裝Arduino Blynk Library](https://github.com/blynkkk/blynk-library)
 
 ### 4. 使用Blynk Library 內的Arduino_MKR-1000範例
-檔案 -> 範例 -> Blynk -> Boards_WiFi -> Arduino_MKR-1000
+檔案 -> 範例 -> Blynk -> Boards_WiFi -> Arduino_MKR-1010
 
 ![](./images/pic1.png)

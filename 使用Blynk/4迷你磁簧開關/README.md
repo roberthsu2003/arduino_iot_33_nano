@@ -1,5 +1,5 @@
 # 迷你磁簧開關和Blynk
-## 學習讓Arduino_迷你磁簧開關和Blynk手機App連線
+- ### 學習讓Arduino_迷你磁簧開關和Blynk手機App連線,使用widgetLED,傳送虛擬pin腳的訊號出去，由device 傳送給 App 訊號
 ### 線路圖
 ![](reedSwitch_bb.jpg)
 
@@ -7,6 +7,9 @@
 ![](IMG_0435.jpg)
 
 ### Blynk App內設定專案
+### App內,板子的設定必需設定為Arduino nano(因為腳位和Arduino nano 33 iot相同)
+### 使用DISPlAY內的Led
+### [Blynk widget 說明頁](https://docs.blynk.io/en/blynk.apps/widgets)
 ![](IMG_1BF.jpeg)
 
 ### Blynk App專案畫面 
@@ -51,8 +54,10 @@
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
 #include "data.h"
-
+//定義實體ledPin腳
 #define ledPin 13
+
+//定義接收磁開關的pin腳
 #define sensor_d12 12
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
@@ -63,7 +68,10 @@ char auth[] = AUTH;
 char ssid[] = SSID;
 char pass[] = PASS;
 
+//必需使用BlynkTimer來建立間隔一段時間，執行function,不可以使用delay
 BlynkTimer timer;
+
+//由於使用WidgetLED，必需建立WidgetLED實體led0,建構式內的參數代表的是虛擬pinV0,如果使用led0.on(),代表由device送出on給Server V0,Server V0再傳送給手機app
 WidgetLED led0(V0);
 void setup()
 {

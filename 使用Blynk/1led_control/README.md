@@ -7,6 +7,8 @@
 ![](IMG_0403.png)
 
 ### Blynk App內設定專案
+### App內,板子的設定必需設定為Arduino nano(因為腳位和Arduino nano 33 iot相同)
+### 使用CONTROLLERS內的Button
 ![](IMG_0424.png)
 
 ### Blynk App專案畫面 
