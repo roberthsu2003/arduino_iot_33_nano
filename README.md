@@ -3,7 +3,7 @@
 ### 主要設備:
 Arduino Nano 33 IoT
 ![aruduon_nano_33_iot_with_header](abx00032_iso.jpg)
-### [周邊零件](./週邊零件/README.md)
+### [周邊零件](./周邊零件/README.md)
 ## 一般操作
 0. [按鈕](./一般操作/0無使用上拉電阻/)
 
