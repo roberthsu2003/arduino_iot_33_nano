@@ -53,11 +53,9 @@
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
 #include "data.h"
-//定義實體ledPin腳
-#define ledPin 13
 
-//定義接收磁開關的pin腳
-#define sensor_d12 12
+#define btn 2
+#define led 13
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = AUTH;
@@ -67,17 +65,15 @@ char auth[] = AUTH;
 char ssid[] = SSID;
 char pass[] = PASS;
 
-//必需使用BlynkTimer來建立間隔一段時間，執行function,不可以使用delay
 BlynkTimer timer;
 
-//由於使用WidgetLED，必需建立WidgetLED實體led0,建構式內的參數代表的是虛擬pinV0,如果使用led0.on(),代表由device送出on給Server V0,Server V0再傳送給手機app
-WidgetLED led0(V0);
+
 void setup()
 {
   // Debug console
-  Serial.begin(9600);  
-  pinMode(ledPin, OUTPUT);
-  pinMode(sensor_d12, INPUT);
+  Serial.begin(9600);
+  pinMode(btn, INPUT_PULLUP);
+  pinMode(led, OUTPUT);
   Blynk.begin(auth, ssid, pass);
   timer.setInterval(100, myTimerEvent);
 }
@@ -86,20 +82,28 @@ void loop()
 {
   Blynk.run();
   timer.run();
-  
+
 }
 
-void myTimerEvent(){  
-  int sensorValue = digitalRead(sensor_d12);
-  //必需調整,沒有磁鐵時,輸出為1
-  Serial.println(sensorValue);
-  if(sensorValue==0){
-     led0.on();
-     digitalWrite(ledPin,HIGH);
+void myTimerEvent() {
+  int sensorVal = digitalRead(btn);
+  if(sensorVal == LOW){
+    digitalWrite(led,HIGH);
+    Blynk.virtualWrite(V4,255);
+    
   }else{
-    led0.off();
-    digitalWrite(ledPin,LOW);
+    digitalWrite(led,LOW);
+    Blynk.virtualWrite(V4,0);
+    
   }
 }
+```
+
+```c++
+data.h
+
+#define AUTH "oNIb_n0TzanMBbP_4j0JOVCkgeV99lYG"
+#define SSID "robert_hsu_home"
+#define PASS "0926656000"
 ```
 
