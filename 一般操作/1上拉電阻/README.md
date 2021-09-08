@@ -1,10 +1,18 @@
-# 沒有使用上拉電阻的按鈕操作
-## 學習Button
+# 上拉電阻
+## 學習何時使用上拉電阻
 ### 線路圖
-![Button線路圖](button_bb.png)
+![上拉電阻線路圖](上拉電阻_bb.jpg)
 
 ### 實體線路圖
-![成品](IMG_0518.png)
+![成品](IMG_0372.jpg)
+
+### 上拉電阻接線
+[![上拉電阻成品展示](https://img.youtube.com/vi/y28I-Kwlljg/2.jpg)](https://youtu.be/y28I-Kwlljg)
+
+### 上拉電阻成品展示
+[![上拉電阻成品展示](https://img.youtube.com/vi/_LYhqSXSdy8/1.jpg)](https://youtu.be/_LYhqSXSdy8)
+
+
 
 ```C++
 #define btn 2
@@ -13,14 +21,14 @@
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(btn, INPUT);
+  pinMode(btn, INPUT_PULLUP);
   pinMode(led, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   int sensorVal = digitalRead(btn);
-  if(sensorVal == HIGH)
+  if(sensorVal == LOW)
     digitalWrite(led,HIGH);
   else
     digitalWrite(led,LOW);
