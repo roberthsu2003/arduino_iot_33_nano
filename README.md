@@ -24,6 +24,10 @@ Arduino Nano 33 IoT
 2. [手機顯示可變電阻動作](https://github.com/roberthsu2003/smartHome/tree/master/%E4%BD%BF%E7%94%A8Blynk/2%E5%8F%AF%E8%AE%8A%E9%9B%BB%E9%98%BB)
 
 3. [手機當作門窗防盜器](./使用Blynk/3迷你磁簧開關/)
+	- 使用virtual pin 傳送資料 -> WidgetLed class
+
+4. [手機接受Button訊號](./使用Blynk/4Button/)
+	- 使用virtual pin 傳送資料 -> Blynk.virtualWrite(V4, HIGH)
 
 ## 及時資料庫
 1. [網頁顯示LED狀態](https://github.com/roberthsu2003/smartHome/tree/master/%E5%8F%8A%E6%99%82%E8%B3%87%E6%96%99%E5%BA%AB/1led_control)
