@@ -5,7 +5,7 @@ Arduino Nano 33 IoT
 ![aruduon_nano_33_iot_with_header](abx00032_iso.jpg)
 ### [周邊零件](./周邊零件/README.md)
 ## 一般操作
-0_0. [電腦傳送資料給Arduino](./0_0由電腦傳送資料給Arduino/)
+0_0. [電腦傳送資料給Arduino](./一般操作/0_0由電腦傳送資料給Arduino/)
 
 1_0. [按鈕](./一般操作/1_0無使用上拉電阻/)
 
