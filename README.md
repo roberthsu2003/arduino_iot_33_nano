@@ -5,11 +5,13 @@ Arduino Nano 33 IoT
 ![aruduon_nano_33_iot_with_header](abx00032_iso.jpg)
 ### [周邊零件](./周邊零件/README.md)
 ## 一般操作
-0. [按鈕](./一般操作/0無使用上拉電阻/)
+1_0. [按鈕](./一般操作/1_0無使用上拉電阻/)
 
-1. [上拉電阻](./一般操作/1上拉電阻/)
+1_1. [上拉電阻](./一般操作/1_1上拉電阻/)
 
-2. [bit操控Led](https://github.com/roberthsu2003/smartHome/tree/master/%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C/2bitLed)
+2_0. [bit操控Led](./一般操作/2_0bitLed/)
+
+2_1. [七段顯示器](./一般操作/2_1七段顯示器/)
 
 3. [事件導向](https://github.com/roberthsu2003/smartHome/tree/master/%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C/3%E4%BA%8B%E4%BB%B6%E5%B0%8E%E5%90%91/1%E9%96%93%E9%9A%94%E6%99%82%E9%96%93%E5%9F%B7%E8%A1%8C)
 
