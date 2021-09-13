@@ -3,6 +3,10 @@
 ### 主要設備:
 Arduino Nano 33 IoT
 ![aruduon_nano_33_iot_with_header](abx00032_iso.jpg)
+
+Arduino Nano 33 Iot(透過USB提供5V電壓)
+![](pic1.jpg)
+
 ### [周邊零件](./周邊零件/README.md)
 ## 一般操作
 0_0. [電腦傳送資料給Arduino](./一般操作/0_0由電腦傳送資料給Arduino/)
