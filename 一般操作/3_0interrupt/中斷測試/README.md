@@ -63,7 +63,6 @@ void blinkme() {
 }
 
 void loop(){
-
 }
 
 ```
