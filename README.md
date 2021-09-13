@@ -6,7 +6,7 @@ Arduino Nano 33 IoT
 
 Arduino Nano 33 Iot(透過USB提供5V電壓)
 ![](pic1.jpg)
-
+ 
 ### [周邊零件](./周邊零件/README.md)
 ## 一般操作
 0_0. [電腦傳送資料給Arduino](./一般操作/0_0由電腦傳送資料給Arduino/)
@@ -18,6 +18,8 @@ Arduino Nano 33 Iot(透過USB提供5V電壓)
 1_1. [上拉電阻](./一般操作/1_1上拉電阻/)
 
 1_2. [光敏電阻](./一般操作/1_2光敏電阻/)
+
+1_3. [可變電阻和RGB_LED](./一般操作/1_3可變電阻和RGB_LED/)
 
 2_0. [bit操控Led](./一般操作/2_0bitLed/)
 
