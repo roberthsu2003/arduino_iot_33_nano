@@ -1,25 +1,3 @@
-# Button和Blynk
-- ### 學習讓Arduino Button和Blynk手機App連線,使用Blynk.virtualWrite(V4, HIGH)傳送虛擬pin腳的訊號出去，由device 傳送給 App 訊號
-### 線路圖
-![](Button_bb.png)
-
-### 實體線路圖
-![](IMG_0372.jpg)
-
-### Blynk App內設定專案
-### App內,板子的設定必需設定為Arduino nano(因為腳位和Arduino nano 33 iot相同)
-### 使用DISPlAY內的Led
-### [Blynk widget 說明頁](https://docs.blynk.io/en/blynk.apps/widgets)
-![](IMG_1BF.jpeg)
-
-### Blynk App專案畫面 
-![](IMG_A3E918CFDDDF-1.jpeg)
-![](IMG_AD5BDB402A9D-1.jpeg)
-
-
-
-
-```C++
 /*************************************************************
   Download latest Blynk library here:
     https://github.com/blynkkk/blynk-library/releases/latest
@@ -97,13 +75,3 @@ void myTimerEvent() {
     
   }
 }
-```
-
-```c++
-data.h
-
-#define AUTH "oNIb_n0TzanMBbP_4j0JOVCkgeV99lYG"
-#define SSID "robert_hsu_home"
-#define PASS "0926656000"
-```
-
