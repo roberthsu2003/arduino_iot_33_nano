@@ -32,8 +32,10 @@
 #include <BlynkSimpleWiFiNINA.h>
 #include "data.h"
 
-#define btn 2
-#define led 13
+#define O_RED_PIN 2
+#define O_GREEN_PIN 3
+#define O_BLUE_PIN 5
+
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = AUTH;
@@ -43,35 +45,35 @@ char auth[] = AUTH;
 char ssid[] = SSID;
 char pass[] = PASS;
 
-BlynkTimer timer;
-
-
 void setup()
 {
   // Debug console
   Serial.begin(9600);
-  pinMode(btn, INPUT_PULLUP);
-  pinMode(led, OUTPUT);
-  Blynk.begin(auth, ssid, pass);
-  timer.setInterval(100, myTimerEvent);
+  pinMode(O_RED_PIN, OUTPUT);
+  pinMode(O_GREEN_PIN, OUTPUT);
+  pinMode(O_BLUE_PIN, OUTPUT);  
+  Blynk.begin(auth, ssid, pass); 
 }
 
 void loop()
 {
   Blynk.run();
-  timer.run();
-
 }
 
-void myTimerEvent() {
-  int sensorVal = digitalRead(btn);
-  if(sensorVal == LOW){
-    digitalWrite(led,HIGH);
-    Blynk.virtualWrite(V4,255);
-    
-  }else{
-    digitalWrite(led,LOW);
-    Blynk.virtualWrite(V4,0);
-    
-  }
+BLYNK_WRITE(V0){
+  byte rValue = param.asInt();
+  Serial.println(rValue);
+  analogWrite(O_RED_PIN,rValue);
+}
+
+BLYNK_WRITE(V1){
+  byte gValue = param.asInt();
+  Serial.println(gValue);
+  analogWrite(O_GREEN_PIN,gValue);
+}
+
+BLYNK_WRITE(V2){
+ byte bValue = param.asInt();
+ Serial.println(bValue);
+ analogWrite(O_BLUE_PIN,bValue);
 }
