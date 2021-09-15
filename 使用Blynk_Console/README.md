@@ -26,7 +26,7 @@
 2. My Profile/User profile
 3. 將Developer Mode 切換至ON 
 
-#### 先建立Device Template
+#### 3. 先建立 Template
 
 依序設定:
 1. Templates -> NewTemplate
@@ -37,7 +37,7 @@
 6. Web Dashboard
 
 
-#### 增加 Arduino 裝置
+#### 4. 增加 Device
 
 透過Template建立Device
 Search -> DEVICES -> NEW Device
@@ -45,7 +45,7 @@ Search -> DEVICES -> NEW Device
 ![](pic1.png)
 
 
-###  安裝手機版 Blynk App New (iOS 或 Android)
+###  5. 安裝手機版 Blynk App New (iOS 或 Android)
 
 1. 登入Blynk帳號
 2. 出現Device(在Blynk.Console內建立的Device)
