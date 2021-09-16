@@ -63,7 +63,7 @@ Arduino Nano 33 Iot(透過USB提供5V電壓)
 
 3. [控制RGBLED](./使用Blynk_Console/3控制RGBLED/)
 
-5. [溫濕度_發出警告](./使用Blynk_Console/3控制RGBLED/5溫濕度_發出警告/)
+5. [溫濕度_發出警告](./使用Blynk_Console/5溫濕度_發出警告/)
 	- 圖表顯示，當超過指定溫度或溼度發出通知
 
 
