@@ -55,7 +55,7 @@
 ![](pic4.jpeg)
 
 ### 展示(圖表顯示)
-https://youtu.be/cxEfopiZayY
+
 [![溫溼度圖表顯示](https://img.youtube.com/vi/cxEfopiZayY/1.jpg)](https://youtu.be/cxEfopiZayY)
 
 
