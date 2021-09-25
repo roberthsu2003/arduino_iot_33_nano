@@ -1,9 +1,10 @@
-
+#define LED A2
+bool ledState = false;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  
+  pinMode(LED,OUTPUT);
 }
 
 void loop() {
@@ -20,6 +21,13 @@ void intervalOne(){
   if(currentTime-previousTime >= 1000){
     previousTime = currentTime;
     Serial.println("每隔1秒執行一次");
+    if(ledState == false){
+      ledState = true;
+      digitalWrite(LED,HIGH);
+    }else{
+      ledState = false;
+      digitalWrite(LED,LOW);
+    }
   }
 }
 
