@@ -1,24 +1,10 @@
-// C++ code
-//
-#define redled 11
-int a = 9;
-
-void setup()
-{
-  pinMode(redled,OUTPUT);
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
 }
 
-void loop()
-{
-  if(a == 10){
-    digitalWrite(redled,HIGH);
-    delay(1000);
-    digitalWrite(redled,LOW);
-    delay(1000);
-  }else{
-    digitalWrite(redled,HIGH);
-    delay(300);
-    digitalWrite(redled,LOW);
-    delay(300);
-  }
+void loop() {
+  // put your main code here, to run repeatedly:
+  Serial.println("Hello!Word!");
+  delay(1000);
 }
