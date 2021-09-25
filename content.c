@@ -1,5 +1,5 @@
 #define LED A2
-bool ledState = false;
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,17 +15,17 @@ void loop() {
 
 
 void intervalOne(){
+  static bool ledState = false;
   static unsigned long previousTime = millis();
   unsigned long currentTime;
   currentTime = millis();
   if(currentTime-previousTime >= 1000){
     previousTime = currentTime;
     Serial.println("每隔1秒執行一次");
-    if(ledState == false){
-      ledState = true;
+    ledState = !ledState;
+    if(ledState){
       digitalWrite(LED,HIGH);
     }else{
-      ledState = false;
       digitalWrite(LED,LOW);
     }
   }
