@@ -1,6 +1,6 @@
 #define LED A2
 
-char inputValue;
+long inputValue;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -13,19 +13,9 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if (Serial.available()) {
-    inputValue = Serial.read();
-
-    if (inputValue == '1') {
-      Serial.println("您輸入的是1");
-      digitalWrite(LED, HIGH);
-    } else if (inputValue == '0') {
-      Serial.println("您輸入的是0");
-      digitalWrite(LED, LOW);
-    } else if (inputValue == '2') {
-      Serial.println("您輸入的是2");
-      digitalWrite(LED, HIGH);
-    }
-
+    inputValue = Serial.parseInt();
+    Serial.println(inputValue);
+    analogWrite(LED,inputValue);
   }
-  analogWrite(LED,0);
+  
 }
