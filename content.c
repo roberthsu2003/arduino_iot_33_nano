@@ -1,21 +1,18 @@
-#define LED A2
+unsigned long previousTime;
 
-long inputValue;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(LED, OUTPUT);
-
-  while (!Serial);
-  Serial.println("Hello!Word!");
+  previousTime = millis();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if (Serial.available()) {
-    inputValue = Serial.parseInt();
-    //Serial.println("您要輸出的字元是"+String(inputValue));
-    analogWrite(LED,inputValue);
+  unsigned long currentTime;
+  currentTime = millis();
+  if(currentTime-previousTime >= 1000){
+    previousTime = currentTime;
+    Serial.println("每隔1秒執行一次");
   }
   
 }
