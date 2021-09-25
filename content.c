@@ -1,9 +1,9 @@
-unsigned long previousTime;
+
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  previousTime = millis();
+  
 }
 
 void loop() {
@@ -14,6 +14,7 @@ void loop() {
 
 
 void intervalOne(){
+  static unsigned long previousTime = millis();
   unsigned long currentTime;
   currentTime = millis();
   if(currentTime-previousTime >= 1000){
