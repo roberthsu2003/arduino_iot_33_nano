@@ -1,10 +1,12 @@
-#define LED A2
+#define RED 2
+#define GREEN 3
 
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(LED,OUTPUT);
+  pinMode(RED,OUTPUT);
+  pinMode(GREEN, OUTPUT);
 }
 
 void loop() {
@@ -24,19 +26,26 @@ void intervalOne(){
     Serial.println("每隔1秒執行一次");
     ledState = !ledState;
     if(ledState){
-      digitalWrite(LED,HIGH);
+      digitalWrite(RED,HIGH);
     }else{
-      digitalWrite(LED,LOW);
+      digitalWrite(RED,LOW);
     }
   }
 }
 
 void intervalTwo(){
+  static bool ledState = false;
   static unsigned long previousTime = millis();
   unsigned long currentTime;
   currentTime = millis();
   if(currentTime-previousTime >= 2000){
     previousTime = currentTime;
     Serial.println("每隔2秒執行一次");
+    ledState = !ledState;
+    if(ledState){
+      digitalWrite(GREEN,HIGH);
+    }else{
+      digitalWrite(GREEN,LOW);
+    }
   }
 }
