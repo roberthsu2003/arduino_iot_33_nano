@@ -14,7 +14,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   if (Serial.available()) {
     inputValue = Serial.parseInt();
-    Serial.println(inputValue);
+    //Serial.println("您要輸出的字元是"+String(inputValue));
     analogWrite(LED,inputValue);
   }
   
