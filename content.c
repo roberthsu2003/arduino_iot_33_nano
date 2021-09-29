@@ -1,8 +1,10 @@
 // C++ code
 //
+#define LED 4
+
 void setup()
 {
-  pinMode(4, OUTPUT);
+  pinMode(LED, OUTPUT);
   Serial.begin(9600);
 }
 
@@ -13,10 +15,10 @@ void loop()
     Serial.println(inputValue);
     switch(inputValue){
       case '1':
-      digitalWrite(4,HIGH);
+      digitalWrite(LED,HIGH);
       break;
       case '0':
-      digitalWrite(4,LOW);
+      digitalWrite(LED,LOW);
       break;
     }
   }
