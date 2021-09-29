@@ -1,27 +1,24 @@
 // C++ code
 //
-#define LED 4
 
+unsigned long previousTime;
 void setup()
 {
-  pinMode(LED, OUTPUT);
   Serial.begin(9600);
+  previousTime = millis();
 }
 
 void loop()
 {
-  if(Serial.available()>0){
-    char inputValue = Serial.read();
-    Serial.println(inputValue);
-    switch(inputValue){
-      case '1':
-      digitalWrite(LED,HIGH);
-      break;
-      case '0':
-      digitalWrite(LED,LOW);
-      break;
-    }
-  }
-  
+
+ oneSecond();
  
+}
+
+void oneSecond(){
+  unsigned long currentTime = millis();
+  if(currentTime - previousTime >=1000){
+    previousTime = currentTime;
+    Serial.println("over one Second");
+  }
 }
