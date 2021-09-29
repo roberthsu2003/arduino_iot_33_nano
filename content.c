@@ -1,20 +1,14 @@
-#define BTN 2
-#define LED 13
-
-
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(BTN,INPUT);
-  pinMode(LED,OUTPUT);
+// C++ code
+//
+void setup()
+{
+  pinMode(4, OUTPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  bool sensorVal = digitalRead(BTN);
-  if(sensorVal){
-    digitalWrite(LED, HIGH);
-  }else{
-    digitalWrite(LED, LOW);
-  }
+void loop()
+{
+  digitalWrite(4, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(4, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
 }
