@@ -8,11 +8,18 @@ void setup()
 
 void loop()
 {
-  digitalWrite(4, HIGH);
-  Serial.println("open");
-  delay(1000); // Wait for 1000 millisecond(s)
+  if(Serial.available()>0){
+    char inputValue = Serial.read();
+    Serial.println(inputValue);
+    switch(inputValue){
+      case '1':
+      digitalWrite(4,HIGH);
+      break;
+      case '0':
+      digitalWrite(4,LOW);
+      break;
+    }
+  }
   
-  digitalWrite(4, LOW);
-  Serial.println("close");
-  delay(1000); // Wait for 1000 millisecond(s)
+ 
 }
