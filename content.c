@@ -1,14 +1,19 @@
-// C++ code
-//
-void setup()
-{
-  pinMode(13, OUTPUT);
+#define BTN 2
+#define LED 13
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(BTN, INPUT);
+  pinMode(LED, OUTPUT);
+  Serial.begin(9600);
 }
 
-void loop()
-{
-  digitalWrite(13, HIGH);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(13, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)
+void loop() {
+  bool btnState = digitalRead(BTN);
+  Serial.println(btnState);
+  if(btnState){
+    digitalWrite(LED, HIGH);
+  }else{
+    digitalWrite(LED, LOW);
+  }
 }
