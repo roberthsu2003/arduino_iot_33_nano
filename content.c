@@ -18,18 +18,25 @@ void setup() {
   Serial.begin(9600);
   Blynk.begin(auth, ssid, pass);
   timer.setInterval(100, myTimerEvent);
-  timer.setInterval(1000,sendVRValue);
-  
+  timer.setInterval(1000,sendVRValue);  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
  Blynk.run();
  timer.run();
+ 
+}
+
+BLYNK_WRITE(V1)
+{
+  // any code you place here will execute when the virtual pin value changes
+  int v0Value = param.asInt();
+  Serial.println(v0Value);
 }
 
 void myTimerEvent(){
-  Serial.println(vrValue(VR));
+  //Serial.println(vrValue(VR));
 }
 
 int vrValue(byte pin){
