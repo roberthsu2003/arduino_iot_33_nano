@@ -7,6 +7,10 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
- Serial.println(analogRead(VR));
+ Serial.println(vrValue(VR));
  delay(10);
+}
+
+int vrValue(byte pin){
+  return analogRead(pin);
 }
