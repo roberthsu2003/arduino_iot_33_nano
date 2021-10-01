@@ -33,6 +33,9 @@ BLYNK_WRITE(V1)
   // any code you place here will execute when the virtual pin value changes
   int v0Value = param.asInt();
   Serial.println(v0Value);
+  if(v0Value == 255){
+    Blynk.logEvent("critical", "油糟要滿了");
+  }
 }
 
 void myTimerEvent(){
