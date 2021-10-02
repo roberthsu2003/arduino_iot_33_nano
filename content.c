@@ -6,7 +6,11 @@ void setup() {
 }
 
 void loop() {
-  int sensorVal = analogRead(A0);
+  cds();
+}
+
+void cds(){  
+int sensorVal = analogRead(A0);
   //Serial.println(sensorVal);
   
   if(sensorVal > 700){
@@ -15,7 +19,6 @@ void loop() {
     Serial.println("亮");
   }else{
     Serial.println("正常");
-  }
-  
+  }  
   delay(100);
 }
