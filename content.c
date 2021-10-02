@@ -1,4 +1,10 @@
+#include <SPI.h>
+#include <WiFiNINA.h>
+#include "secretData.h"
+
 #define CDS A0
+char ssid[] = SSIDNAME;
+char pass[] = PASSWORD;
 
 void setup() {
   // put your setup code here, to run once:
@@ -22,3 +28,9 @@ int sensorVal = analogRead(A0);
   }  
   delay(100);
 }
+
+
+secretData.h
+
+#define SSIDNAME ""
+#define PASSWORD ""
