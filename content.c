@@ -51,6 +51,21 @@ void setup() {
 
 void loop() {
   cds();
+  while (client.available()) {
+    char c = client.read();
+    Serial.write(c);
+  }
+
+   if (!client.connected()) {
+    Serial.println();
+    Serial.println("停止連線至google");
+    client.stop();
+
+    // do nothing forevermore:
+    while (true);
+  }
+
+  
 }
 
 void cds(){  
