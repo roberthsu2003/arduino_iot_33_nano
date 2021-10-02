@@ -15,7 +15,26 @@ void setup() {
   while(!Serial);
   if(WiFi.status() == WL_NO_MODULE){
     Serial.println("沒有這個網路模組wifinina");
+    while (true);
   }
+
+  String fv = WiFi.firmwareVersion();
+  if (fv < WIFI_FIRMWARE_LATEST_VERSION) {
+    Serial.println("請更新Firmware");
+  }
+
+  while (status != WL_CONNECTED) {
+    Serial.print("現在要連線的SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    status = WiFi.begin(ssid, pass);
+
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+  Serial.println("連線成功");
+  //printWifiStatus();
+  
   Serial.println("檢查完成");
 }
 
