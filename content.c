@@ -33,7 +33,18 @@ void setup() {
     delay(10000);
   }
   Serial.println("連線成功");
-  //printWifiStatus();
+  printWifiStatus();
+
+  Serial.println("開始連線至google...");
+  // if you get a connection, report back via serial:
+  if (client.connect(server, 80)) {
+    Serial.println("連線到server");
+    // Make a HTTP request:
+    client.println("GET /search?q=arduino HTTP/1.1");
+    client.println("Host: www.google.com");
+    client.println("Connection: close");
+    client.println();
+  }
   
   Serial.println("檢查完成");
 }
@@ -54,4 +65,21 @@ int sensorVal = analogRead(A0);
     //Serial.println("正常");
   }  
   delay(100);
+}
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your board's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
 }
