@@ -1,3 +1,4 @@
+//BlynkTimer timer是一個softwareTimer,受delay()影響
 #include <BlynkSimpleWiFiNINA.h>
 #define ledPin  LED_BUILTIN
 BlynkTimer timer;
