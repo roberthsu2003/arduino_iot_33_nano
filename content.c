@@ -6,6 +6,7 @@
 char ssid[] = SSIDNAME; 
 char pass[] = PASSWORD;
 char server[] = "maker.ifttt.com";
+bool sended = false;
 
 int status = WL_IDLE_STATUS;
 WiFiSSLClient client;
@@ -42,7 +43,9 @@ void loop() {
 void getCds(){
   int sensorValue = analogRead(cds);
   Serial.println(sensorValue);
-  delay(1000);
+  if(sensorValue >= 997 && sended==false){
+    sendMail(sensorValue,500);
+  }
 }
 
 void sendMail(int v1,int v2){
@@ -52,11 +55,6 @@ void sendMail(int v1,int v2){
     client.println("Connection: close");
     client.println();
     Serial.println("傳送成功");
+    sended = true;
   }
 }
-
-
-secret.h
-#define SSIDNAME ""
-#define PASSWORD ""
-#define IFTTTKEY "eDqcZjq"
