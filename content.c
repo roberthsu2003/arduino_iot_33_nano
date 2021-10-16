@@ -47,7 +47,7 @@ void getCds(){
   int sensorValue = analogRead(cds);
   //Serial.println(sensorValue);
   if(sensorValue >= 997 && sended==false){
-    sendMail(sensorValue,500);
+    sendMail(sensorValue);
   }
   
 }
@@ -59,17 +59,17 @@ void calculatTime(){
   }
 }
 
-void sendMail(int v1,int v2){
-  Serial.println("發送mail");
- if(client.connectSSL(server, 443)){
-    client.println("GET /trigger/sendMail/with/key/"+String(IFTTTKEY)+"?value1="+String(v1)+"&value2="+String(v2)+" HTTP/1.1");
+void sendMail(int v1){
+  Serial.println("發送line");
+ if(client.connect(server, 443)){
+    client.println("GET /trigger/over997/with/key/"+String(IFTTTKEY)+"?value1="+String(v1)+" HTTP/1.1");
     client.println("Host: maker.ifttt.com");
     client.println("Connection: close");
     client.println();
-    Serial.println("傳送成功");
+    Serial.println("line傳送成功");
     sended = true;
     triggerTime = millis();
   }else{
-    Serial.println("發送失敗");
+    Serial.println("line發送失敗");
   }
 }
