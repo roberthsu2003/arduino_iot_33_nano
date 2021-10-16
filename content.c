@@ -1,75 +1,33 @@
-#include <SPI.h>
-#include <WiFiNINA.h>
-#include "secret.h"
-#define cds A0
+#define INPUT_RED A0
+#define INPUT_GREEN A1
+#define INPUT_BLUE A2
+#define OUTPUT_RED 2
+#define OUTPUT_GREEN 3
+#define OUTPUT_BLUE 5
 
-char ssid[] = SSIDNAME; 
-char pass[] = PASSWORD;
-char server[] = "maker.ifttt.com";
-bool sended = false;
-
-int status = WL_IDLE_STATUS;
-WiFiSSLClient client;
-
-unsigned long triggerTime=0;
 
 void setup() {
-  
   Serial.begin(9600);
-  while(!Serial);
-  //如果連線的狀態，不是WL_CONNECTED，就繼續執行
-  while(status != WL_CONNECTED){
-    Serial.print("連線到SSID:");
-    Serial.println(ssid);
-    status = WiFi.begin(ssid, pass);
-    delay(5000);
-  }
-  Serial.println("已經連線成功");
+  pinMode(OUTPUT_RED,OUTPUT);
+  pinMode(OUTPUT_GREEN,OUTPUT);
+  pinMode(OUTPUT_BLUE,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  readSensor();
+  delay(1000);
+}
+
+void readSensor(){
+  int r = analogRead(INPUT_RED);
+  int g = analogRead(INPUT_GREEN);
+  int b = analogRead(INPUT_BLUE);
+  byte rValue = map(r,0,1023,0,255);
+  byte gValue = map(g,0,1023,0,255);
+  byte bValue = map(b,0,1023,0,255);
+  Serial.println("紅色:" + String(rValue));
+  Serial.println("綠色:" + String(gValue));
+  Serial.println("藍色:" + String(bValue));
   
-  /*  
-  if(client.connect(server, 443)){
-    client.println("GET /trigger/sendMail/with/key/eDqcZfqY_i_BHCZVXCwb6aq7GLPKpdV4q1ePja35Mjq?value1=30&value2=40 HTTP/1.1");
-    client.println("Host: maker.ifttt.com");
-    client.println("Connection: close");
-    client.println();
-    Serial.println("傳送成功");
-  }
-  */
-  
-}
-
-void loop() {      
-  getCds();
-  calculatTime();
-}
-
-void getCds(){
-  int sensorValue = analogRead(cds);
-  //Serial.println(sensorValue);
-  if(sensorValue >= 997 && sended==false){
-    sendMail(sensorValue);
-  }
-  
-}
-
-void calculatTime(){
-  unsigned long currentTime = millis();
-  if((currentTime - triggerTime) >= 10000){
-    sended = false;
-  }
-}
-
-void sendMail(int v1){
-  Serial.println("發送line");
- if(client.connect(server, 443)){
-    client.println("GET /trigger/over997/with/key/"+String(IFTTTKEY)+"?value1="+String(v1)+" HTTP/1.1");
-    client.println("Host: maker.ifttt.com");
-    client.println("Connection: close");
-    client.println();
-    Serial.println("line傳送成功");
-    sended = true;
-    triggerTime = millis();
-  }else{
-    Serial.println("line發送失敗");
-  }
 }
