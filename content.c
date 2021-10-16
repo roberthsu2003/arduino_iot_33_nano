@@ -11,6 +11,8 @@ bool sended = false;
 int status = WL_IDLE_STATUS;
 WiFiSSLClient client;
 
+unsigned long triggerTime=0;
+
 void setup() {
   
   Serial.begin(9600);
@@ -33,7 +35,7 @@ void setup() {
     Serial.println("傳送成功");
   }
   */
-  sendMail(30,40);
+  
 }
 
 void loop() {      
@@ -46,6 +48,14 @@ void getCds(){
   if(sensorValue >= 997 && sended==false){
     sendMail(sensorValue,500);
   }
+  calculatTime();
+}
+
+void calculatTime(){
+  unsigned long currentTime = millis();
+  if((currentTime - triggerTime) >= 10000){
+    sended = false;
+  }
 }
 
 void sendMail(int v1,int v2){
@@ -56,5 +66,6 @@ void sendMail(int v1,int v2){
     client.println();
     Serial.println("傳送成功");
     sended = true;
+    triggerTime = millis();
   }
 }
