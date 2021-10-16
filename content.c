@@ -29,5 +29,11 @@ void readSensor(){
   Serial.println("紅色:" + String(rValue));
   Serial.println("綠色:" + String(gValue));
   Serial.println("藍色:" + String(bValue));
-  
+  changColor(rValue,gValue,bValue); 
+}
+
+void changColor(byte r, byte g, byte b){
+  analogWrite(OUTPUT_RED,r);
+  analogWrite(OUTPUT_GREEN,g);
+  analogWrite(OUTPUT_BLUE,b);
 }
