@@ -40,15 +40,16 @@ void setup() {
 
 void loop() {      
   getCds();
+  calculatTime();
 }
 
 void getCds(){
   int sensorValue = analogRead(cds);
-  Serial.println(sensorValue);
+  //Serial.println(sensorValue);
   if(sensorValue >= 997 && sended==false){
     sendMail(sensorValue,500);
   }
-  calculatTime();
+  
 }
 
 void calculatTime(){
@@ -59,7 +60,8 @@ void calculatTime(){
 }
 
 void sendMail(int v1,int v2){
- if(client.connect(server, 443)){
+  Serial.println("發送mail");
+ if(client.connectSSL(server, 443)){
     client.println("GET /trigger/sendMail/with/key/"+String(IFTTTKEY)+"?value1="+String(v1)+"&value2="+String(v2)+" HTTP/1.1");
     client.println("Host: maker.ifttt.com");
     client.println("Connection: close");
@@ -67,5 +69,7 @@ void sendMail(int v1,int v2){
     Serial.println("傳送成功");
     sended = true;
     triggerTime = millis();
+  }else{
+    Serial.println("發送失敗");
   }
 }
