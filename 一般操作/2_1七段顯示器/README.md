@@ -24,7 +24,7 @@
 ### 接線成品
 ![](IMG_0521.png)
 
-### 7段顯示器展示
+### 7段顯示器展示
 [![bitLed展示](https://img.youtube.com/vi/Zd1pAQSc4Q8/1.jpg)](https://youtu.be/Zd1pAQSc4Q8)
 
 ```C++
@@ -32,6 +32,10 @@
  * g = digital 9
  * f = digital 8
  * e = digital 7
+ * d = digital 6
+ * c = digital 5
+ * b = digital 4
+ * a = digital 3
  */
 byte pins[] = {9, 8, 7, 6, 5, 4, 3}; //g,f,e,d,c,b,a
 byte pinCount = 7;
