@@ -31,6 +31,33 @@
 ### 7段顯示器展示
 [![bitLed展示](https://img.youtube.com/vi/Zd1pAQSc4Q8/1.jpg)](https://youtu.be/Zd1pAQSc4Q8)
 
+### 簡單寫法
+
+```c++
+#define a 3
+#define b 4
+#define c 5
+#define d 6
+#define e 7
+#define f 8
+#define g 9
+
+void setup(){
+	pinMode(a, OUTPUT);  
+	pinMode(b, OUTPUT);
+	pinMode(c, OUTPUT);
+	pinMode(d, OUTPUT);
+	pinMode(e, OUTPUT);
+	pinMode(f, OUTPUT);
+	pinMode(g, OUTPUT);
+}
+
+void loop(){
+}
+```
+
+### 使用bitread()寫法
+
 ```C++
 /*
  * g = digital 9
