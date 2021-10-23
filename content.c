@@ -19,9 +19,12 @@ void setup() {
   displayNum();
 }
 void displayNum(){
+  byte pins[] = {g,f,e,d,c,b,a,0};
   byte n = B01111110;//7段顯示器0的數字
   for(int i=6; i>=0; i--){
-    Serial.print(bitRead(n,i));    
+    bool val = bitRead(n,i);
+    Serial.print(val);
+    digitalWrite(pins[i],val);    
   }
   Serial.println();
   
