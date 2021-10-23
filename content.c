@@ -10,6 +10,12 @@ secret.h
 main
 
 
+#define BLYNK_PRINT Serial
+#include "secret.h"
+#include <SPI.h>
+#include <WiFiNINA.h>
+#include <BlynkSimpleWiFiNINA.h>
+
 #define a 3
 #define b 4
 #define c 5
@@ -17,6 +23,11 @@ main
 #define e 7
 #define f 8
 #define g 9
+
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = ID;
+char pass[] = PASS;
+
 
 void setup() {
   pinMode(a,OUTPUT);
@@ -27,8 +38,7 @@ void setup() {
   pinMode(f,OUTPUT);
   pinMode(g,OUTPUT);
   Serial.begin(9600);
-  while(!Serial); 
-  
+  Blynk.begin(auth, ssid, pass);  
 }
 void displayNum(byte displayNum){
   //儲存7段顯示器顯示0~9所需要的2進位值
@@ -44,17 +54,12 @@ void displayNum(byte displayNum){
   
 }
 
-void loop() {
-  if(Serial.available()){
-      long inputNum = Serial.parseInt();
-      if(inputNum>=0 && inputNum<=9){
-        displayNum(inputNum);
-        Serial.println(inputNum);
-      }else{
-        Serial.println("不合法的數字");
-      }
-      
-  }
-   
+void loop() {  
+  Blynk.run();
+}
 
+BLYNK_WRITE(V0){
+  int digitalNum = param.asInt();
+  Serial.println(digitalNum);
+  displayNum(digitalNum);
 }
