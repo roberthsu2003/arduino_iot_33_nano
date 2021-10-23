@@ -34,57 +34,14 @@ void displayNum(byte displayNum){
 
 void loop() {
   if(Serial.available()){
-      switch(Serial.read()){
-      case '0':
-      Serial.println(0);
-      displayNum(0);
-      break;
-
-      case '1':
-      Serial.println(1);
-      displayNum(1);
-      break;
-
-      case '2':
-      Serial.println(2);
-      displayNum(2);
-      break;
-
-      case '3':
-      Serial.println(3);
-      displayNum(3);
-      break;
-
-      case '4':
-      Serial.println(4);
-      displayNum(4);
-      break;
-
-      case '5':
-      Serial.println(5);
-      displayNum(5);
-      break;
-
-      case '6':
-      Serial.println(6);
-      displayNum(6);
-      break;
-
-      case '7':
-      Serial.println(7);
-      displayNum(7);
-      break;
-
-      case '8':
-      Serial.println(8);
-      displayNum(8);
-      break;
-
-      case '9':
-      Serial.println(9);
-      displayNum(9);
-      break;
-    }
+      long inputNum = Serial.parseInt();
+      if(inputNum>=0 && inputNum<=9){
+        displayNum(inputNum);
+        Serial.println(inputNum);
+      }else{
+        Serial.println("不合法的數字");
+      }
+      
   }
    
 
