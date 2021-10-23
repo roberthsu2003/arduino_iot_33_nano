@@ -15,6 +15,17 @@ void setup() {
   pinMode(f,OUTPUT);
   pinMode(g,OUTPUT);
   Serial.begin(9600);
+  zero();
+}
+
+void zero(){
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,HIGH);
+  digitalWrite(e,HIGH);
+  digitalWrite(f,HIGH);
+  digitalWrite(g,HIGH);
 }
 
 void loop() {
