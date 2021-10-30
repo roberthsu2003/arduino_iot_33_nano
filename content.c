@@ -2,18 +2,22 @@
 #define latchPin 3
 #define clockPin 4
 #define button 5
+unsigned long switchCount = 0;
+bool buttonState;
 
 void setup() {
   Serial.begin(9600);
   pinMode(button,INPUT_PULLUP);
-
+  buttonState = digitalRead(button);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  bool buttonState = digitalRead(button);
-  Serial.println(buttonState);
-  delay(100);
+  bool currentButtonState = digitalRead(button);
+  if(currentButtonState != buttonState){
+    buttonState = currentButtonState;
+    switchCount++;
+    Serial.println(switchCount);
+  }  
 }
 
 
