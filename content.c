@@ -2,7 +2,8 @@
 #define latchPin 3
 #define clockPin 4
 #define button 5
-unsigned long switchCount = 0;
+unsigned long switchCount = 0; //狀態改變的次數
+int i = 0; //按下放開的次數
 bool buttonState;
 
 void setup() {
@@ -14,12 +15,22 @@ void setup() {
 void loop() {
   bool currentButtonState = digitalRead(button);
   if(currentButtonState != buttonState){
-    buttonState = currentButtonState;
-    switchCount++;
-    Serial.println(switchCount);
-  }  
+    delay(30); //解決彈跳
+    if(currentButtonState != buttonState){
+      buttonState = currentButtonState;
+      switchCount++;
+      if(switchCount % 2 == 0){
+        i = switchCount / 2; 
+        if(i==10){
+          switchCount = 0;
+          i = 0;     
+        }
+        Serial.println(i);      
+      }      
+    }    
+  } 
+   
 }
-
 
 ch595.h
 
