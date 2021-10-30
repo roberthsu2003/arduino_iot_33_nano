@@ -1,21 +1,19 @@
 #include "ch595.h"
-
 #define dataPin 2
 #define latchPin 3
 #define clockPin 4
 
+byte i = 0;
 
-
-void setup() {
-  
-  setNumberCH595(0,latchPin,dataPin,clockPin);
+void setup() {  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  
+  if(i >= 10) i = 0;  
+  setNumberCH595(i,latchPin,dataPin,clockPin);
+  i++;
+  delay(1000);
 }
-
 
 
 
