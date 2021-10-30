@@ -1,28 +1,57 @@
+#define BLYNK_PRINT Serial
+#include "secret.h"
 #include "ch595.h"
 #include "releaseButton.h"
+#include <SPI.h>
+#include <WiFiNINA.h>
+#include <BlynkSimpleWiFiNINA.h>
 #define dataPin 2
 #define latchPin 3
 #define clockPin 4
 #define button 5
 int count = 0; //計算按鈕狀態改變的次數
 int displayNumberState;
+int displayNumber;
+
+BlynkTimer timer;
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = ID;
+char pass[] = PASS;
 
 void setup() {
   Serial.begin(9600); 
   displayNumberState = displayNum(count,9);
   setNumberCH595(0,latchPin,dataPin,clockPin);
+  Blynk.begin(auth, ssid, pass);
+  timer.setInterval(1000, myTimerEvent);
 }
 
-void loop() {    
+void loop() { 
+    Blynk.run();
+    timer.run();   
     count += button_release(button);    
-    int displayNumber = displayNum(count,9);
+    displayNumber = displayNum(count,9);
     if(displayNumber != displayNumberState){
        displayNumberState = displayNumber;
-       setNumberCH595(displayNumberState,latchPin,dataPin,clockPin);
+       setNumberCH595(displayNumber,latchPin,dataPin,clockPin);
        Serial.println(displayNumber);  
     }
     
 }
+
+void myTimerEvent(){
+  Blynk.virtualWrite(V0,displayNumber);
+}
+
+secret.h
+
+#define BLYNK_TEMPLATE_ID "w"
+#define BLYNK_DEVICE_NAME ""
+#define BLYNK_AUTH_TOKEN "wxOWym"
+
+#define ID "rober"
+#define PASS "092"
+
 
 
 ch595.h
