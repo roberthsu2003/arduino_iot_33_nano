@@ -12,8 +12,8 @@
 ### 接線成品
 ![](button04.jpg)
 
-### 7段顯示器和74HC595和switch Button展示
-[![switch Button展示](https://img.youtube.com/vi/JmcEfhzedUQ/1.jpg)](https://youtu.be/JmcEfhzedUQ)
+### 7段顯示器和74HC595和switch Button展示
+[![switch Button展示](https://img.youtube.com/vi/JmcEfhzedUQ/1.jpg)](https://youtu.be/JmcEfhzedUQ)
 
 ```C++
 #define dataPin 2
