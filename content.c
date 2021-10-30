@@ -1,17 +1,24 @@
 #include "ch595.h"
-
 #define dataPin 2
 #define latchPin 3
 #define clockPin 4
 
+#define MAC
+
 void setup() {
-  
+  Serial.begin(9600);
+  while(!Serial);
+  #ifdef MAC
+  Serial.println("MAC");
+  #else
+  Serial.println("WINDOWS");
+  #endif
   setNumberCH595(0,latchPin,dataPin,clockPin);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  
 }
 
 
