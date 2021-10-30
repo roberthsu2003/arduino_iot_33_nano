@@ -1,18 +1,13 @@
 #include "ch595.h"
+
 #define dataPin 2
 #define latchPin 3
 #define clockPin 4
 
-#define MAC
+
 
 void setup() {
-  Serial.begin(9600);
-  while(!Serial);
-  #ifdef MAC
-  Serial.println("MAC");
-  #else
-  Serial.println("WINDOWS");
-  #endif
+  
   setNumberCH595(0,latchPin,dataPin,clockPin);
 }
 
@@ -26,13 +21,13 @@ void loop() {
 
 ch595.h
 
+#ifndef __CH595_H__
+#define __CH595_H__
 /*
  * setNumber(顯示的數字,latchPin,dataPin,clockPin)
 */
 #include <arduino.h>
-
-void setNumberCH595(byte n,byte latch,byte data,byte c){
-  
+void setNumberCH595(byte n,byte latch,byte data,byte c){  
   pinMode(data, OUTPUT);
   pinMode(latch, OUTPUT);
   pinMode(c, OUTPUT);
@@ -41,3 +36,5 @@ void setNumberCH595(byte n,byte latch,byte data,byte c){
   shiftOut(data,c,LSBFIRST,numbers[n]);
   digitalWrite(latch,HIGH);
 }
+
+#endif
