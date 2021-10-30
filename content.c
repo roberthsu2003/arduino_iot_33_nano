@@ -1,20 +1,20 @@
-#include "ch595.h"
 #define dataPin 2
 #define latchPin 3
 #define clockPin 4
+#define button 5
 
-byte i = 0;
+void setup() {
+  Serial.begin(9600);
+  pinMode(button,INPUT_PULLUP);
 
-void setup() {  
 }
 
 void loop() {
-  if(i >= 10) i = 0;  
-  setNumberCH595(i,latchPin,dataPin,clockPin);
-  i++;
-  delay(1000);
+  // put your main code here, to run repeatedly:
+  bool buttonState = digitalRead(button);
+  Serial.println(buttonState);
+  delay(100);
 }
-
 
 
 ch595.h
