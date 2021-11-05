@@ -1,65 +1,102 @@
-secret.h
-#define BLYNK_TEMPLATE_ID ""
-#define BLYNK_DEVICE_NAME ""
-#define BLYNK_AUTH_TOKEN ""
-
-#define ID ""
-#define PASS ""
-
-====================================
-main
-
-
 #define BLYNK_PRINT Serial
 #include "secret.h"
+#include "ch595.h"
+#include "releaseButton.h"
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
+#define dataPin 2
+#define latchPin 3
+#define clockPin 4
+#define button 5
+int count = 0; //計算按鈕狀態改變的次數
+int displayNumberState;
+int displayNumber;
 
-#define a 3
-#define b 4
-#define c 5
-#define d 6
-#define e 7
-#define f 8
-#define g 9
-
+BlynkTimer timer;
 char auth[] = BLYNK_AUTH_TOKEN;
 char ssid[] = ID;
 char pass[] = PASS;
 
-
 void setup() {
-  pinMode(a,OUTPUT);
-  pinMode(b,OUTPUT);
-  pinMode(c,OUTPUT);
-  pinMode(d,OUTPUT);
-  pinMode(e,OUTPUT);
-  pinMode(f,OUTPUT);
-  pinMode(g,OUTPUT);
-  Serial.begin(9600);
-  Blynk.begin(auth, ssid, pass);  
+  Serial.begin(9600); 
+  displayNumberState = displayNum(count,9);
+  setNumberCH595(0,latchPin,dataPin,clockPin);
+  Blynk.begin(auth, ssid, pass);
+  timer.setInterval(1000, myTimerEvent);
 }
-void displayNum(byte displayNum){
-  //儲存7段顯示器顯示0~9所需要的2進位值
-  char numbers[] = {B01111110,B00110000,B01101101,B01111001,B00110011,B01011011,B01011111,B01110000,B01111111,B01111011};
-  byte pins[] = {g,f,e,d,c,b,a,0};
-  char n = numbers[displayNum];//7段顯示器要顯示的數字的數字
-  for(int i=6; i>=0; i--){
-    bool val = bitRead(n,i);
-    Serial.print(val);
-    digitalWrite(pins[i],val);    
+
+void loop() { 
+    Blynk.run();
+    timer.run();   
+    count += button_release(button);    
+    displayNumber = displayNum(count,9);
+    if(displayNumber != displayNumberState){
+       displayNumberState = displayNumber;
+       setNumberCH595(displayNumber,latchPin,dataPin,clockPin);
+       Serial.println(displayNumber);  
+    }
+    
+}
+
+void myTimerEvent(){
+  Blynk.virtualWrite(V0,displayNumber);
+}
+
+secret.h
+
+#define BLYNK_TEMPLATE_ID "w"
+#define BLYNK_DEVICE_NAME ""
+#define BLYNK_AUTH_TOKEN "wxOWym"
+
+#define ID "rober"
+#define PASS "092"
+
+
+
+ch595.h
+
+#ifndef __CH595_H__
+#define __CH595_H__
+/*
+ * setNumber(顯示的數字,latchPin,dataPin,clockPin)
+*/
+#include <arduino.h>
+void setNumberCH595(byte n,byte latch,byte data,byte c){  
+  pinMode(data, OUTPUT);
+  pinMode(latch, OUTPUT);
+  pinMode(c, OUTPUT);
+  byte numbers[10] = {B01111110,B00110000,B01101101,B01111001,B00110011,B01011011,B01011111,B01110000,B01111111,B01111011};
+  digitalWrite(latch,LOW);
+  shiftOut(data,c,LSBFIRST,numbers[n]);
+  digitalWrite(latch,HIGH);
+}
+
+#endif
+
+
+releaseButton.h
+
+#ifndef __RELEASEBUTTON_H__
+#define __RELEASEBUTTON_H__
+
+int button_release(int buttonPin) { //傳出按鈕改變的次數
+  pinMode(buttonPin, INPUT_PULLUP);
+  static bool buttonState = digitalRead(buttonPin);
+  bool currentButtonState = digitalRead(buttonPin);
+  if (currentButtonState != buttonState) {
+    delay(50); //解決彈跳
+    if (currentButtonState != buttonState) {
+      buttonState = currentButtonState;
+      return 1;
+    }
   }
-  Serial.println();
-  
+  return 0;
 }
 
-void loop() {  
-  Blynk.run();
+int displayNum(int stateCount,int maxNum){ //stateCount是按鈕狀態改變的次數,maxNum是0~maxNum
+    int i = stateCount / 2; 
+    return i % (maxNum+1);    
 }
 
-BLYNK_WRITE(V0){
-  int digitalNum = param.asInt();
-  Serial.println(digitalNum);
-  displayNum(digitalNum);
-}
+#endif
