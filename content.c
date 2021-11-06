@@ -2,7 +2,7 @@
 #define BUTTON 11
 #define TRIG_PIN 3
 #define ECHO_PIN 4
-#define USECOND 58
+
 
 unsigned int stateChangeCount = 0;
 bool runOnce = false;
@@ -29,11 +29,7 @@ void loop() {
 void buttonOpen(){
   if(runOnce == false){ //只會執行一次
     runOnce = true;
-    digitalWrite(TRIG_PIN,HIGH);
-    delayMicroseconds(10);
-    digitalWrite(TRIG_PIN,LOW);
-    unsigned long backTime = pulseIn(ECHO_PIN,HIGH);
-    int distance = backTime / USECOND;
+    int distance = getDistanceCM(TRIG_PIN,ECHO_PIN);
     Serial.println(distance);
   }
 }
@@ -42,6 +38,17 @@ void buttonClose(){
   if(runOnce == true){ //只會執行一次
     runOnce = false;
     Serial.println("關閉");
-  }
- 
+  } 
+}
+
+int getDistanceCM(byte trigPin, byte echoPin){
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
+  const int USECOND = 58;
+  digitalWrite(trigPin,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin,LOW);
+  unsigned long backTime = pulseIn(echoPin,HIGH);
+  int distance = backTime / USECOND;
+  return distance;
 }
