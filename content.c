@@ -30,6 +30,7 @@ void buttonOpen(){
     runOnce = true;
     digitalWrite(TRIG_PIN,HIGH);
     delayMicroseconds(10);
+    digitalWrite(TRIG_PIN,LOW);
     unsigned long backTime = pulseIn(ECHO_PIN,HIGH);
     Serial.println(backTime);
   }
