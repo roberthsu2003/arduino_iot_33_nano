@@ -2,6 +2,7 @@
 #define BUTTON 11
 #define TRIG_PIN 3
 #define ECHO_PIN 4
+#define USECOND 58
 
 unsigned int stateChangeCount = 0;
 bool runOnce = false;
@@ -32,7 +33,8 @@ void buttonOpen(){
     delayMicroseconds(10);
     digitalWrite(TRIG_PIN,LOW);
     unsigned long backTime = pulseIn(ECHO_PIN,HIGH);
-    Serial.println(backTime);
+    int distance = backTime / USECOND;
+    Serial.println(distance);
   }
 }
 
