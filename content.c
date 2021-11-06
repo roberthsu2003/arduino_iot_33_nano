@@ -1,10 +1,16 @@
 #include "releaseButton.h"
 #define BUTTON 11
+#define TRIG_PIN 3
+#define ECHO_PIN 4
+
 unsigned int stateChangeCount = 0;
 bool runOnce = false;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  pinMode(BUTTON,INPUT_PULLUP);
+  pinMode(TRIG_PIN,OUTPUT);
+  pinMode(ECHO_PIN,INPUT);
 }
 
 void loop() {
@@ -22,7 +28,10 @@ void loop() {
 void buttonOpen(){
   if(runOnce == false){ //只會執行一次
     runOnce = true;
-    Serial.println("Open");
+    digitalWrite(TRIG_PIN,HIGH);
+    delayMicroseconds(10);
+    unsigned long backTime = pulseIn(ECHO_PIN,HIGH);
+    Serial.println(backTime);
   }
 }
 
