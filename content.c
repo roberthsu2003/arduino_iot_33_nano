@@ -1,20 +1,19 @@
-#define WIRE_PIN 11
-#define LIGHT_PIN 5
-
-
+#include "releaseButton.h"
+#define BUTTON 11
+unsigned int stateChangeCount = 0;
 void setup() {
   // put your setup code here, to run once:
-  pinMode(LIGHT_PIN,OUTPUT);
-  pinMode(WIRE_PIN,INPUT_PULLUP);
   Serial.begin(9600);
-  attachInterrupt(digitalPinToInterrupt(WIRE_PIN),blinkme,CHANGE);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  delay(10000);
-}
-
-void blinkme(){
-  Serial.println("HELLO!");
+  stateChangeCount += button_release(BUTTON);  
+  bool switchState = displayNum(stateChangeCount,1);
+  if(switchState){
+    //開啟
+    Serial.println("開啟");
+  }else{
+    //關閉
+    Serial.println("關閉");
+  }
 }
