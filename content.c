@@ -1,6 +1,6 @@
 #include "releaseButton.h"
 #include "sr104.h"
-#include <BlynkSimpleWiFiNINA.h>
+#include <SimpleTimer.h>
 #define BUTTON 11
 #define TRIG_PIN 3
 #define ECHO_PIN 4
@@ -9,7 +9,7 @@
 
 unsigned int stateChangeCount = 0;
 bool runOnce = false;
-BlynkTimer timer;
+SimpleTimer timer;
 int timerid;
 
 void setup() {
