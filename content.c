@@ -27,9 +27,13 @@ void buttonOpen(){
   if(isOpen == false){ //只會執行一次
     isOpen = true;
     Serial.println("開");
+    /*
     digitalWrite(BUZZER,true);
     delay(1000);
     digitalWrite(BUZZER,false);
+    */
+
+    tone(BUZZER,4978,1000);
   }  
 }
 
@@ -37,8 +41,11 @@ void buttonClose(){
   if(isOpen == true){
     isOpen = false;
     Serial.println("關");
+    /*
     digitalWrite(BUZZER,true);
     delay(1000);
     digitalWrite(BUZZER,false);
+    */
+    tone(BUZZER,4978,1000);
   }  
 }
