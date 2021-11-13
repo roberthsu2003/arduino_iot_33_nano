@@ -5,6 +5,7 @@
 
 unsigned int stateChangeCount = 0;
 bool isOpen = false;
+Sound sound(BUZZER);
 void setup() {
   Serial.begin(9600);
   pinMode(BUTTON,INPUT_PULLUP);
@@ -33,8 +34,8 @@ void buttonOpen(){
     delay(1000);
     digitalWrite(BUZZER,false);
     */
-
-    tone(BUZZER,4978,1000);
+    //tone(BUZZER,4978,1000);
+    sound.beep(1000);
   }  
 }
 
@@ -47,6 +48,7 @@ void buttonClose(){
     delay(1000);
     digitalWrite(BUZZER,false);
     */
-    tone(BUZZER,4978,1000);
+    //tone(BUZZER,4978,1000);
+     sound.beep(1000);
   }  
 }
