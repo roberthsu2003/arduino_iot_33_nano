@@ -1,6 +1,10 @@
 #include "releaseButton.h"
 #include <sound.h>
 #include "DHT.h"
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+
+
 
 #define BUTTON 5
 #define BUZZER 4
@@ -8,7 +12,7 @@
 #define DHTPIN 2
 
 DHT dht(DHTPIN, DHTTYPE);
-
+LiquidCrystal_I2C lcd(0x27,20,2);
 
 unsigned int stateChangeCount = 0;
 bool isOpen = false;
@@ -18,6 +22,12 @@ void setup() {
   pinMode(BUTTON,INPUT_PULLUP);
   pinMode(BUZZER,OUTPUT);
   dht.begin();
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(3,0);
+  lcd.print("Hello, world!");
+  lcd.setCursor(2,1);
+  lcd.print("Ywrobot Arduino!");
 }
 
 void loop() {
