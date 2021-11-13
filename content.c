@@ -1,11 +1,9 @@
 #include "releaseButton.h"
 #include <sound.h>
-#include "DHT.h"
+#include <DHT.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <SimpleTimer.h>
-
-
 
 #define BUTTON 5
 #define BUZZER 4
@@ -89,4 +87,24 @@ void workOfSecond(){
     lcd.print("H:"+String(h)+" %");
     lcd.setCursor(0,1);
     lcd.print("T:"+String(t)+" C");
+
+    if(t > 24.0){
+      alert();
+    }
+}
+
+void alert(){
+  static bool alertState = false;
+  if(alertState == false){
+    //執行alert動作
+    alertState = true;    
+    sound.melodySound();
+    oneMinite(alertState);
+    Serial.println(alertState);
+  }
+}
+
+void oneMinite(bool alertState){
+  delay(1000*30);
+  alertState = false;
 }
