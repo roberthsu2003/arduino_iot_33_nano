@@ -1,6 +1,11 @@
 #include "releaseButton.h"
 #include <sound.h>
 #include "DHT.h"
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+#include <SimpleTimer.h>
+
+
 
 #define BUTTON 5
 #define BUZZER 4
@@ -8,19 +13,32 @@
 #define DHTPIN 2
 
 DHT dht(DHTPIN, DHTTYPE);
-
+LiquidCrystal_I2C lcd(0x27,20,2);
+SimpleTimer timer;
 
 unsigned int stateChangeCount = 0;
 bool isOpen = false;
 Sound sound(BUZZER);
+int timerId;
+
 void setup() {
   Serial.begin(9600);
   pinMode(BUTTON,INPUT_PULLUP);
   pinMode(BUZZER,OUTPUT);
   dht.begin();
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(5,0);
+  lcd.print("CLOSE!!");
+  lcd.setCursor(2,1);
+  lcd.print("Hollo! Arduino!");
+
+  timerId = timer.setInterval(2000, workOfSecond);
+  timer.disable(timerId);
 }
 
 void loop() {
+  timer.run();
   stateChangeCount += button_release(BUTTON);
   bool switchState = displayNum(stateChangeCount,1);
   //偵測switchState是1或0
@@ -38,7 +56,29 @@ void buttonOpen(){
     isOpen = true;
     Serial.println("開");
     sound.phone();
-    float h = dht.readHumidity();
+    timer.enable(timerId);    
+  }  
+}
+
+void buttonClose(){
+  if(isOpen == true){
+    isOpen = false;
+    Serial.println("關");
+    lcd.setCursor(5,0);
+    lcd.print("CLOSE!!");
+    /*
+    digitalWrite(BUZZER,true);
+    delay(1000);
+    digitalWrite(BUZZER,false);
+    */
+    //tone(BUZZER,4978,1000);
+     sound.phone();
+     timer.disable(timerId);
+  }  
+}
+
+void workOfSecond(){
+  float h = dht.readHumidity();
     float t = dht.readTemperature();
     if (isnan(h) || isnan(t)) {
     Serial.println("測試失敗");
@@ -48,21 +88,7 @@ void buttonOpen(){
     Serial.print(h);
     Serial.print(F("%  Temperature: "));
     Serial.print(t);
-    Serial.print(F("°C "));
-    
-  }  
-}
-
-void buttonClose(){
-  if(isOpen == true){
-    isOpen = false;
-    Serial.println("關");
-    /*
-    digitalWrite(BUZZER,true);
-    delay(1000);
-    digitalWrite(BUZZER,false);
-    */
-    //tone(BUZZER,4978,1000);
-     sound.phone();
-  }  
+    Serial.println(F("°C "));
+    lcd.setCursor(5,0);
+    lcd.print("OPEN!!");
 }
