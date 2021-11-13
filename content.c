@@ -64,16 +64,11 @@ void buttonClose(){
   if(isOpen == true){
     isOpen = false;
     Serial.println("關");
+    lcd.clear();
     lcd.setCursor(5,0);
-    lcd.print("CLOSE!!");
-    /*
-    digitalWrite(BUZZER,true);
-    delay(1000);
-    digitalWrite(BUZZER,false);
-    */
-    //tone(BUZZER,4978,1000);
-     sound.phone();
-     timer.disable(timerId);
+    lcd.print("CLOSE!!");     
+    sound.phone();
+    timer.disable(timerId);
   }  
 }
 
@@ -89,6 +84,9 @@ void workOfSecond(){
     Serial.print(F("%  Temperature: "));
     Serial.print(t);
     Serial.println(F("°C "));
-    lcd.setCursor(5,0);
-    lcd.print("OPEN!!");
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("H:"+String(h)+" %");
+    lcd.setCursor(0,1);
+    lcd.print("T:"+String(t)+" C");
 }
