@@ -35,7 +35,8 @@ void buttonOpen(){
     digitalWrite(BUZZER,false);
     */
     //tone(BUZZER,4978,1000);
-    sound.beep(1000);
+    //sound.beep(1000);
+    sound.phone();
   }  
 }
 
@@ -49,6 +50,6 @@ void buttonClose(){
     digitalWrite(BUZZER,false);
     */
     //tone(BUZZER,4978,1000);
-     sound.beep(1000);
+     sound.phone();
   }  
 }
