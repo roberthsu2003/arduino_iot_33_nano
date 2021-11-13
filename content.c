@@ -2,7 +2,7 @@
 #define BUTTON 5
 
 unsigned int stateChangeCount = 0;
-
+bool isOpen = false;
 void setup() {
   Serial.begin(9600);
   pinMode(BUTTON,INPUT_PULLUP);
@@ -10,8 +10,28 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   stateChangeCount += button_release(BUTTON);
   bool switchState = displayNum(stateChangeCount,1);
-  Serial.println(switchState);
+  //偵測switchState是1或0
+  if(switchState){
+    //1
+    buttonOpen();
+  }else{
+    //0
+    buttonClose();
+  }
+}
+
+void buttonOpen(){
+  if(isOpen == false){ //只會執行一次
+    isOpen = true;
+    Serial.println("開");
+  }  
+}
+
+void buttonClose(){
+  if(isOpen == true){
+    isOpen = false;
+    Serial.println("關");
+  }  
 }
