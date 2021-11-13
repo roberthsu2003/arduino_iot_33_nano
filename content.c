@@ -13,6 +13,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27,20,2);
 SimpleTimer timer;
+SimpleTimer timer60;
 
 
 unsigned int stateChangeCount = 0;
@@ -39,6 +40,7 @@ void setup() {
 
 void loop() {
   timer.run();
+  timer60.run();
   stateChangeCount += button_release(BUTTON);
   bool switchState = displayNum(stateChangeCount,1);
   //偵測switchState是1或0
@@ -95,14 +97,24 @@ void workOfSecond(){
     }
 }
 
+
+int timerId60;
 bool alertState = false;
+
 void alert(){
     if(alertState == false){
+        timerId60 = timer60.setInterval(1000*10,caculateTime);  
         alertState = true;
         Serial.println("alert");
         sound.melodySound();
     }
         
+}
+
+void caculateTime(){
+  Serial.println("計時");
+  timer60.disable(timerId60);
+  alertState = false;
 }
 
 
