@@ -1,4 +1,5 @@
 #include "releaseButton.h"
+#include <sound.h>
 #define BUTTON 5
 #define BUZZER 4
 
