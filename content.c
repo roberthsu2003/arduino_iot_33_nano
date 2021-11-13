@@ -24,10 +24,10 @@ void setup() {
   dht.begin();
   lcd.init();
   lcd.backlight();
-  lcd.setCursor(3,0);
-  lcd.print("Hello, world!");
+  lcd.setCursor(5,0);
+  lcd.print("CLOSE!!");
   lcd.setCursor(2,1);
-  lcd.print("Ywrobot Arduino!");
+  lcd.print("Hollo! Arduino!");
 }
 
 void loop() {
@@ -59,7 +59,8 @@ void buttonOpen(){
     Serial.print(F("%  Temperature: "));
     Serial.print(t);
     Serial.print(F("°C "));
-    
+    lcd.setCursor(5,0);
+    lcd.print("OPEN!!");
   }  
 }
 
@@ -67,6 +68,8 @@ void buttonClose(){
   if(isOpen == true){
     isOpen = false;
     Serial.println("關");
+    lcd.setCursor(5,0);
+    lcd.print("CLOSE!!");
     /*
     digitalWrite(BUZZER,true);
     delay(1000);
