@@ -1,7 +1,14 @@
 #include "releaseButton.h"
 #include <sound.h>
+#include "DHT.h"
+
 #define BUTTON 5
 #define BUZZER 4
+#define DHTTYPE DHT11
+#define DHTPIN 2
+
+DHT dht(DHTPIN, DHTTYPE);
+
 
 unsigned int stateChangeCount = 0;
 bool isOpen = false;
@@ -10,6 +17,7 @@ void setup() {
   Serial.begin(9600);
   pinMode(BUTTON,INPUT_PULLUP);
   pinMode(BUZZER,OUTPUT);
+  dht.begin();
 }
 
 void loop() {
@@ -29,14 +37,19 @@ void buttonOpen(){
   if(isOpen == false){ //只會執行一次
     isOpen = true;
     Serial.println("開");
-    /*
-    digitalWrite(BUZZER,true);
-    delay(1000);
-    digitalWrite(BUZZER,false);
-    */
-    //tone(BUZZER,4978,1000);
-    //sound.beep(1000);
     sound.phone();
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
+    if (isnan(h) || isnan(t)) {
+    Serial.println("測試失敗");
+      return;
+    }
+    Serial.print(F("Humidity: "));
+    Serial.print(h);
+    Serial.print(F("%  Temperature: "));
+    Serial.print(t);
+    Serial.print(F("°C "));
+    
   }  
 }
 
