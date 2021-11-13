@@ -14,10 +14,12 @@ DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27,20,2);
 SimpleTimer timer;
 
+
 unsigned int stateChangeCount = 0;
 bool isOpen = false;
 Sound sound(BUZZER);
 int timerId;
+
 
 void setup() {
   Serial.begin(9600);
@@ -32,7 +34,7 @@ void setup() {
   lcd.print("Hollo! Arduino!");
 
   timerId = timer.setInterval(2000, workOfSecond);
-  timer.disable(timerId);
+  timer.disable(timerId);  
 }
 
 void loop() {
@@ -93,18 +95,14 @@ void workOfSecond(){
     }
 }
 
+bool alertState = false;
 void alert(){
-  static bool alertState = false;
-  if(alertState == false){
-    //執行alert動作
-    alertState = true;    
-    sound.melodySound();
-    oneMinite(alertState);
-    Serial.println(alertState);
-  }
+    if(alertState == false){
+        alertState = true;
+        Serial.println("alert");
+        sound.melodySound();
+    }
+        
 }
 
-void oneMinite(bool alertState){
-  delay(1000*30);
-  alertState = false;
-}
+
