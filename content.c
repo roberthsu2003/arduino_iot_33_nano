@@ -91,7 +91,7 @@ void workOfSecond(){
     lcd.print("H:"+String(h)+" %");
     lcd.setCursor(0,1);
     lcd.print("T:"+String(t)+" C");
-
+    //溫度超過24度發出警告
     if(t > 24.0){
       alert();
     }
@@ -101,9 +101,9 @@ void workOfSecond(){
 int timerId60;
 bool alertState = false;
 
-void alert(){
+void alert(){  //發出警告後60秒內不會再發出警告
     if(alertState == false){
-        timerId60 = timer60.setInterval(1000*10,caculateTime);  
+        timerId60 = timer60.setInterval(1000*60,caculateTime);  
         alertState = true;
         Serial.println("alert");
         sound.melodySound();
