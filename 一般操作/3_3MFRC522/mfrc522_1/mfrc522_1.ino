@@ -6,7 +6,7 @@
 
 
 #define RST_PIN         9          
-#define SS_PIN          A0  //就是模組上的SDA接腳,可以任意pin腳
+#define SS_PIN          10  //就是模組上的SDA接腳,可以任意pin腳
 
 
 MFRC522 mfrc522;   // 建立MFRC522實體

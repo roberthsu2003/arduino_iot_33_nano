@@ -8,6 +8,10 @@
 
 ![](pic1.png)
 
+### arduino nano iot 33
+
+![](pinmap.png)
+
 ### 線路圖
 ![](mfrc522_bb.png)
 
@@ -18,23 +22,26 @@
 
 ```C++
 /*
- * * mfrc_522_1.ino
+ * *mfrc522_1
  * *讀取卡片UID，從監控視窗查看
  */
 #include <SPI.h>
 #include <MFRC522.h>
 
+
 #define RST_PIN         9          
-#define SS_PIN          A4  //就是模組上的SDA接腳
+#define SS_PIN          10  //就是模組上的SDA接腳,可以任意pin腳
 
 
 MFRC522 mfrc522;   // 建立MFRC522實體
+
 
 void setup() {
   while(!Serial);
   Serial.begin(9600); 
 
-  SPI.begin();        // 初始化SPI介面
+  SPI.begin();  // 初始化SPI介面
+  
 
   mfrc522.PCD_Init(SS_PIN, RST_PIN); // 初始化MFRC522卡
   Serial.print(F("Reader "));
@@ -55,7 +62,6 @@ void loop() {
       Serial.print(F("PICC type: "));
       MFRC522::PICC_Type piccType = mfrc522.PICC_GetType(mfrc522.uid.sak);
       Serial.println(mfrc522.PICC_GetTypeName(piccType));  //顯示卡片的類型
-
       mfrc522.PICC_HaltA();  // 卡片進入停止模式
     }
 }
@@ -64,10 +70,12 @@ void loop() {
  * 這個副程式把讀取到的UID，用16進位顯示出來
  */
 void dump_byte_array(byte *buffer, byte bufferSize) {
+  
   for (byte i = 0; i < bufferSize; i++) {
     Serial.print(buffer[i] < 0x10 ? " 0" : " ");
-    Serial.print(buffer[i], HEX);
-  }
+    Serial.print(buffer[i], HEX);        
+   }
+      
 }
 ```
 
