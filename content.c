@@ -38,7 +38,7 @@ char pass[] = PASS;
 
 void setup() {  
   Serial.begin(9600);
-  while !Serial;
+  while(!Serial);
   Blynk.begin(auth, ssid, pass);
   pinMode(BUTTON,INPUT_PULLUP);
   pinMode(BUZZER,OUTPUT);
@@ -98,6 +98,7 @@ void workOfSecond(){
     Serial.println("測試失敗");
       return;
     }
+    //顯示到lcd
     Serial.print(F("Humidity: "));
     Serial.print(h);
     Serial.print(F("%  Temperature: "));
@@ -108,6 +109,10 @@ void workOfSecond(){
     lcd.print("H:"+String(h)+" %");
     lcd.setCursor(0,1);
     lcd.print("T:"+String(t)+" C");
+
+    //傳送到Blyker
+    Blynk.virtualWrite(V0,t);
+    Blynk.virtualWrite(V1,h);
     //溫度超過ALERT_TEMP溫度發出警告
     if(t > ALERT_TEMP){
       alert();
