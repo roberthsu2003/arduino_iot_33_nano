@@ -17,6 +17,10 @@
 
 ![](pic2.png)
 
+### arduino nano 33 iot
+
+![](pinmap.png)
+
 
 ### 線路圖
 ![](lcm1602_DHT11_bb.png)
