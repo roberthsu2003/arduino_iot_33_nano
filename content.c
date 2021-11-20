@@ -1,6 +1,7 @@
 /*
  * SimpleTimer使用說明:https://playground.arduino.cc/Code/SimpleTimer/
 */
+#include "secret.h"
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
@@ -12,7 +13,6 @@
 #include <SimpleTimer.h>
 
 #define BLYNK_PRINT Serial
-#define BLYNK_TEMPLATE_ID   "YourTemplateID"
 #define BUTTON 5
 #define BUZZER 4
 #define DHTTYPE DHT11
@@ -29,15 +29,17 @@ bool isOpen = false;
 Sound sound(BUZZER);
 int timerId;
 
-char auth[] = "YourAuthToken";
+char auth[] = BLYNK_AUTH_TOKEN;
 
 // wifi認證
-char ssid[] = "YourNetworkName";
-char pass[] = "YourPassword";
+char ssid[] = ID;
+char pass[] = PASS;
 
 
-void setup() {
+void setup() {  
   Serial.begin(9600);
+  while !Serial;
+  Blynk.begin(auth, ssid, pass);
   pinMode(BUTTON,INPUT_PULLUP);
   pinMode(BUZZER,OUTPUT);
   dht.begin();
@@ -55,6 +57,7 @@ void setup() {
 void loop() {
   timer.run();
   timer60.run();
+  Blynk.run();
   stateChangeCount += button_release(BUTTON);
   bool switchState = displayNum(stateChangeCount,1);
   //偵測switchState是1或0
@@ -129,3 +132,14 @@ void caculateTime(){
   Serial.println("計時");  
   alertState = false;
 }
+
+
+
+
+secret.h
+
+#define BLYNK_TEMPLATE_ID "kJA"
+#define BLYNK_DEVICE_NAME "溫度溼度按鈕蜂鳴器警告"
+#define BLYNK_AUTH_TOKEN "OwtKO19N1"
+#define ID "ome"
+#define PASS "09"
