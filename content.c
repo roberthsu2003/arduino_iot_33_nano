@@ -1,3 +1,7 @@
+/*
+ * SimpleTimer使用說明:https://playground.arduino.cc/Code/SimpleTimer/
+*/
+
 #include "releaseButton.h"
 #include <sound.h>
 #include <DHT.h>
@@ -9,6 +13,7 @@
 #define BUZZER 4
 #define DHTTYPE DHT11
 #define DHTPIN 2
+#define ALERT_TEMP 25
 
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27,20,2);
@@ -91,8 +96,8 @@ void workOfSecond(){
     lcd.print("H:"+String(h)+" %");
     lcd.setCursor(0,1);
     lcd.print("T:"+String(t)+" C");
-    //溫度超過24度發出警告
-    if(t > 24.0){
+    //溫度超過ALERT_TEMP溫度發出警告
+    if(t > ALERT_TEMP){
       alert();
     }
 }
@@ -103,7 +108,7 @@ bool alertState = false;
 
 void alert(){  //發出警告後60秒內不會再發出警告
     if(alertState == false){
-        timerId60 = timer60.setInterval(1000*60,caculateTime);  
+        timerId60 = timer60.setTimeout(1000*60,caculateTime);  //setTimeout 60秒後，只執行一次
         alertState = true;
         Serial.println("alert");
         sound.melodySound();
@@ -112,9 +117,6 @@ void alert(){  //發出警告後60秒內不會再發出警告
 }
 
 void caculateTime(){
-  Serial.println("計時");
-  timer60.disable(timerId60);
+  Serial.println("計時");  
   alertState = false;
 }
-
-
