@@ -1,7 +1,9 @@
 /*
  * SimpleTimer使用說明:https://playground.arduino.cc/Code/SimpleTimer/
 */
-
+#include <SPI.h>
+#include <WiFiNINA.h>
+#include <BlynkSimpleWiFiNINA.h>
 #include "releaseButton.h"
 #include <sound.h>
 #include <DHT.h>
@@ -9,22 +11,29 @@
 #include <LiquidCrystal_I2C.h>
 #include <SimpleTimer.h>
 
+#define BLYNK_PRINT Serial
+#define BLYNK_TEMPLATE_ID   "YourTemplateID"
 #define BUTTON 5
 #define BUZZER 4
 #define DHTTYPE DHT11
 #define DHTPIN 2
-#define ALERT_TEMP 25
+#define ALERT_TEMP 27
 
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27,20,2);
 SimpleTimer timer;
 SimpleTimer timer60;
 
-
 unsigned int stateChangeCount = 0;
 bool isOpen = false;
 Sound sound(BUZZER);
 int timerId;
+
+char auth[] = "YourAuthToken";
+
+// wifi認證
+char ssid[] = "YourNetworkName";
+char pass[] = "YourPassword";
 
 
 void setup() {
