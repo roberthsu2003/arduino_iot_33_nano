@@ -92,7 +92,7 @@ void buttonClose(){
 }
 
 void workOfSecond(){
-  float h = dht.readHumidity();
+    float h = dht.readHumidity();
     float t = dht.readTemperature();
     if (isnan(h) || isnan(t)) {
     Serial.println("測試失敗");
@@ -115,7 +115,7 @@ void workOfSecond(){
     Blynk.virtualWrite(V1,h);
     //溫度超過ALERT_TEMP溫度發出警告
     if(t > ALERT_TEMP){
-      alert();
+      alert(t);
     }
 }
 
@@ -123,12 +123,13 @@ void workOfSecond(){
 int timerId60;
 bool alertState = false;
 
-void alert(){  //發出警告後60秒內不會再發出警告
+void alert(float t){  //發出警告後60秒內不會再發出警告
     if(alertState == false){
         timerId60 = timer60.setTimeout(1000*60,caculateTime);  //setTimeout 60秒後，只執行一次
         alertState = true;
-        Serial.println("alert");
+        Serial.println("alert-現在是"+String(t)+"度");
         sound.melodySound();
+        Blynk.logEvent("overtemperature", "現在溫度是攝氏"+String(t)+"度") ;
     }
         
 }
@@ -137,14 +138,3 @@ void caculateTime(){
   Serial.println("計時");  
   alertState = false;
 }
-
-
-
-
-secret.h
-
-#define BLYNK_TEMPLATE_ID "kJA"
-#define BLYNK_DEVICE_NAME "溫度溼度按鈕蜂鳴器警告"
-#define BLYNK_AUTH_TOKEN "OwtKO19N1"
-#define ID "ome"
-#define PASS "09"
