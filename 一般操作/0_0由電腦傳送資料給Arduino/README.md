@@ -80,5 +80,47 @@ void loop(){
 }
 ```
 
+### 將電腦傳送來的字串(255,0,0)轉換為R,G,B3個整數
+
+```
+/*--------------------------------
+ *使用者,可以在arudino編輯器的序列埠管理員
+ *輸入3個數值,格式如下: 255,255,0
+ *rgb參數必需傳入3個int元素的陣列
+ *
+----------------------------- */
+void inputMultipleValue(int* rgb){
+  if(Serial.available() > 0){
+    String stringBuffer = Serial.readString();    
+    int stringLength = stringBuffer.length();
+    String rString = "";     
+    int j = 0;
+     
+    for(int i=0; i<stringLength; i++){
+      
+      if(stringBuffer[i] != ',' ){ 
+        rString += stringBuffer[i];       
+      }else{
+        rgb[j] = rString.toInt();
+        j++;
+        rString = "";
+      }
+
+      if(i == stringLength-1){
+        rgb[j] = rString.toInt();
+        j++;
+         rString = "";
+      } 
+      
+      
+    }
+
+    
+    
+  }
+}
+
+```
+
 
 
