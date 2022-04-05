@@ -6,6 +6,14 @@ Arduino Nano 33 IoT
 
 Arduino Nano 33 Iot(透過USB提供5V電壓)
 ![](pic1.jpg)
+
+[Arduino Nano 33 Iot 永和廠商](https://www.ruten.com.tw/item/show?21402143721715#info)
+
+### 替代主要設備:
+ #### NodeMCU-32S V1.3 (CH340版本) Lua WiFi物聯網開發板 ESP32-S
+ ![](./images/pic1.jpeg)
+ 
+ [ESP32-永和廠商](https://www.ruten.com.tw/item/show?21310149011328)
  
 ### [周邊零件](./周邊零件/README.md)
 ## 一般操作
@@ -94,6 +102,7 @@ Arduino Nano 33 Iot(透過USB提供5V電壓)
 ![aruduon_nano_33_iot_with_header](abx00032_iso.jpg)
 
 
+
 #### 跳線線路圖
 
 ![](nanoV33_bb.jpg)
@@ -119,3 +128,16 @@ Arduino Nano 33 Iot(透過USB提供5V電壓)
 
 #### arduino naon 33 iot 說明文件
 https://content.arduino.cc/assets/Pinout-NANO33IoT_latest.pdf
+
+## NodeMCU-32S V1.3 (CH340版本) Lua WiFi物聯網開發板 ESP32-S 使用說明
+
+![](./images/pic2.png)
+![](./images/pic3.png)
+
+## 安裝CH340版本 driver
+
+安裝網址(https://www.taiwaniot.com.tw/技術文件/如何安裝ch340晶片程式/)
+
+## ESP32 arduino 安裝方式
+
+安裝網址(https://makerpro.cc/2020/06/how-to-install-and-configure-esp32-development-environment/)
