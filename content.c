@@ -7,7 +7,7 @@
 void setup()
 {
   Serial.begin(9600);
-  pinMode(BTN,INPUT);
+  pinMode(BTN,INPUT_PULLUP);
   pinMode(LED,OUTPUT);
 }
 
@@ -15,10 +15,12 @@ void loop()
 {
   bool value = digitalRead(BTN);
   Serial.println(value);
+  
   if(value){
-    digitalWrite(LED,HIGH);
-  }else{
     digitalWrite(LED,LOW);
+  }else{
+    digitalWrite(LED,HIGH);
   }
+  
   delay(100);
 }
