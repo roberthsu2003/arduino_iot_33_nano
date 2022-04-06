@@ -16,7 +16,7 @@ void loop()
   bool value = digitalRead(BTN);
   Serial.println(value);
   
-  if(value){
+  if(value==HIGH){
     digitalWrite(LED,LOW);
   }else{
     digitalWrite(LED,HIGH);
