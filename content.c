@@ -1,26 +1,18 @@
 // C++ code
 //
 
-#define BTN 12
-#define LED 13
+#define LIGHT A2
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(BTN,INPUT_PULLUP);
-  pinMode(LED,OUTPUT);
 }
 
 void loop()
 {
-  bool value = digitalRead(BTN);
+  
+  int value = analogRead(LIGHT);
   Serial.println(value);
-  
-  if(value==HIGH){
-    digitalWrite(LED,LOW);
-  }else{
-    digitalWrite(LED,HIGH);
-  }
-  
   delay(100);
+  
 }
