@@ -49,6 +49,17 @@ void setup()
 
 void loop()
 {
- 
- 
+ WiFiClientSecure *client = new WiFiClientSecure;
+ if(client){
+  {
+    HTTPClient https;
+    if (https.begin(*client, "https://maker.ifttt.com/trigger/nighting/with/key/eDqcZfqY_i_BHCZVXCwb6aq7GLPKpdV4q1ePja35Mjq?value1=30&value2=40&value3=50")){
+      https.end();
+    }
+  }
+
+  delete client;
+  
+ }
+ delay(1000000);
 }
