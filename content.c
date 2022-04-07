@@ -1,68 +1,53 @@
+// 使用IFTTT
+// 使用arduino nano 33 iot
+
 /*
- * *mfrc522_1
- * *讀取卡片UID，從監控視窗查看
- */
+  連線iftttt,evenName:over30
+  和line連線
+*/
 #include <SPI.h>
-#include <MFRC522.h>
-#include <LiquidCrystal_I2C.h>
+#include <WiFiNINA.h>
+#include "data.h"
 
+int status = WL_IDLE_STATUS;
+char server[] = "maker.ifttt.com";
+WiFiSSLClient client;
+void setup()
+{
+  Serial.begin(9600);
+  delay(100);
+  Serial.println();
 
-#define RST_PIN         9          
-#define SS_PIN          10  //就是模組上的SDA接腳,可以任意pin腳
+  Serial.print("Connecting to Wi-Fi");
+  while (status != WL_CONNECTED)
+  {
+    status = WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    Serial.print(".");
+    delay(300);
+  }
+  Serial.println();
+  Serial.print("Connected with IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.println();
 
-
-MFRC522 mfrc522;   // 建立MFRC522實體
-LiquidCrystal_I2C lcd(0x27,20,2);
-
-void setup() {
-  while(!Serial);
-  Serial.begin(9600); 
-
-  SPI.begin();  // 初始化SPI介面
-  
-
-  mfrc522.PCD_Init(SS_PIN, RST_PIN); // 初始化MFRC522卡
-  Serial.print("Reader ");
-  Serial.print(": ");
-  mfrc522.PCD_DumpVersionToSerial(); // 顯示讀卡設備的版本
-
-  lcd.init();
-  lcd.backlight();
-  lcd.setCursor(5,0);
-  lcd.print("CLOSE!!");
-  lcd.setCursor(2,1);
-  lcd.print("Hollo! Arduino!");  
-}
-
-
-
-void loop() {
-  // 檢查是不是一張新的卡
-  if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial()) {
-      // 顯示卡片內容
-      Serial.print("Card UID:");
-      dump_byte_array(mfrc522.uid.uidByte, mfrc522.uid.size); // 顯示卡片的UID     
-      Serial.println();
-      Serial.print("PICC type: ");
-      MFRC522::PICC_Type piccType = mfrc522.PICC_GetType(mfrc522.uid.sak);
-      Serial.println(mfrc522.PICC_GetTypeName(piccType));  //顯示卡片的類型
-      mfrc522.PICC_HaltA();  // 卡片進入停止模式
+ 
+  //連線ifttt
+  /*一開始就連線的測試
+    if (client.connect(server, 443)) {
+    Serial.println("connected to server");
+    // Make a HTTP request:
+    client.println("GET /trigger/over30/with/key/eDqcZfqY_i_BHCZVXCwb6aq7GLPKpdV4q1ePja35Mjq?value1=30&value2=40 HTTP/1.1");
+    client.println("Host: maker.ifttt.com");
+    client.println("Connection: close");
+    client.println();
     }
+  */
 }
 
-/**
- * 這個副程式把讀取到的UID，用16進位顯示出來
- */
-void dump_byte_array(byte buffer[], byte bufferSize) {
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("CARD_ID:");
-  lcd.setCursor(0,1);
-  for (byte i = 0; i < bufferSize; i++) {    
-    lcd.print(buffer[i] < 0x10 ? " 0" : " ");
-    lcd.print(buffer[i],HEX);
-    Serial.print(buffer[i] < 0x10 ? " 0" : " ");
-    Serial.print(buffer[i], HEX);        
-   }
-      
+
+
+void loop()
+{
+ 
+ 
 }
