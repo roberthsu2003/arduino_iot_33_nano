@@ -13,6 +13,7 @@ ino
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
+#define LIGHTS 36
 
 
 /* Fill-in your Template ID (only if using Blynk.Cloud) */
@@ -43,9 +44,9 @@ void loop()
 }
 
 void myTimerEvent() {
-    Serial.println("Hello!");  
-    Blynk.virtualWrite(V0,50);   
+    int lightValue = analogRead(LIGHTS);
+    byte percentValue = map(lightValue,70,3700,0,100);      
+    Blynk.virtualWrite(V0,percentValue);   
     
 }
-
 
