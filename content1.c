@@ -16,6 +16,7 @@
 
 int status = WL_IDLE_STATUS;
 WiFiMulti WiFiMulti;
+unsigned long commitTime = 1000 * 10;
 void setup()
 {
   Serial.begin(115200);
@@ -39,8 +40,11 @@ void loop()
   int lightValue = analogRead(LIGHTS);
   byte percentValue = map(lightValue,70,3700,0,100);
   Serial.println(percentValue);
-  if(percentValue >= 70){
-    Serial.printf("光線太暗:%d\n",percentValue);  
+  unsigned long currentTime = millis();
+  if(percentValue >= 70 && currentTime-commitTime > 1000*10){
+    Serial.println("光線太暗:" + String(percentValue)); 
+    ifttt(); 
+    commitTime=millis();
   }
   delay(100);
 }
