@@ -43,13 +43,13 @@ void loop()
   unsigned long currentTime = millis();
   if(percentValue >= 70 && currentTime-commitTime > 1000*10){
     Serial.println("光線太暗:" + String(percentValue)); 
-    ifttt(); 
+    ifttt(percentValue,100,100); 
     commitTime=millis();
   }
   delay(100);
 }
 
-void ifttt(){
+void ifttt(int value1,int value2,int value3){
   //連線ifttt
  WiFiClientSecure *client = new WiFiClientSecure;
   if(client) {
@@ -61,7 +61,7 @@ void ifttt(){
       HTTPClient https;
   
       Serial.print("[HTTPS] begin...\n");
-      if (https.begin(*client, "https://maker.ifttt.com/trigger/" + String(EVENNAME) + "/with/key/" + String(KEY) + "?value1=30&value2=40&value3=50")) {  // HTTPS
+      if (https.begin(*client, "https://maker.ifttt.com/trigger/" + String(EVENNAME) + "/with/key/" + String(KEY) + "?value1=" + String(value1)+ "&value2=" + String(value2) + "&value3=" +String(value3))) {  // HTTPS
         Serial.print("[HTTPS] GET...\n");
         // start connection and send HTTP header
         int httpCode = https.GET();
