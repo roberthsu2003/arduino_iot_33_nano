@@ -124,13 +124,6 @@ void loop()
   和line連線
 */
 
-// 使用IFTTT
-// 使用arduino nano 33 iot
-
-/*
-  連線iftttt,evenName:over30
-  和line連線
-*/
 
 #include <Arduino.h>
 
