@@ -15,7 +15,6 @@
 #include "data.h"
 
 int status = WL_IDLE_STATUS;
-char server[] = "maker.ifttt.com";
 WiFiMulti WiFiMulti;
 void setup()
 {
@@ -32,34 +31,61 @@ void setup()
   Serial.println(" connected");
 
  
-  //連線ifttt
-  /*一開始就連線的測試
-    if (client.connect(server, 443)) {
-    Serial.println("connected to server");
-    // Make a HTTP request:
-    client.println("GET /trigger/over30/with/key/eDqcZfqY_i_BHCZVXCwb6aq7GLPKpdV4q1ePja35Mjq?value1=30&value2=40 HTTP/1.1");
-    client.println("Host: maker.ifttt.com");
-    client.println("Connection: close");
-    client.println();
-    }
-  */
+  ifttt();
+  
 }
 
 
 
 void loop()
 {
+  
+  
+}
+
+void ifttt(){
+  //連線ifttt
  WiFiClientSecure *client = new WiFiClientSecure;
- if(client){
-  {
-    HTTPClient https;
-    if (https.begin(*client, "https://maker.ifttt.com/trigger/nighting/with/key/eDqcZfqY_i_BHCZVXCwb6aq7GLPKpdV4q1ePja35Mjq?value1=30&value2=40&value3=50")){
-      https.end();
+  if(client) {
+    //client -> setCACert(rootCACertificate);
+    client -> setInsecure(); //不要檢查憑證的驗證
+
+    {
+      //建立程式區塊,確認所有https這個區塊結束後,https變數記憶體被釋放，完成後才可以delete client 
+      HTTPClient https;
+  
+      Serial.print("[HTTPS] begin...\n");
+      if (https.begin(*client, "https://maker.ifttt.com/trigger/" + String(EVENNAME) + "/with/key/" + String(KEY) + "?value1=30&value2=40&value3=50")) {  // HTTPS
+        Serial.print("[HTTPS] GET...\n");
+        // start connection and send HTTP header
+        int httpCode = https.GET();
+  
+        // httpCode will be negative on error
+        if (httpCode > 0) {
+          // HTTP header has been send and Server response header has been handled
+          Serial.printf("[HTTPS] GET... code: %d\n", httpCode);
+  
+          // file found at server
+          if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
+            String payload = https.getString();
+            Serial.println(payload);
+          }
+        } else {
+          Serial.printf("[HTTPS] GET... failed, error: %s\n", https.errorToString(httpCode).c_str());
+        }
+  
+        https.end();
+      } else {
+        Serial.printf("[HTTPS] Unable to connect\n");
+      }
+
+      // End extra scoping block
     }
+  
+    delete client;
+  } else {
+    Serial.println("Unable to create client");
   }
 
-  delete client;
   
- }
- delay(1000000);
 }
