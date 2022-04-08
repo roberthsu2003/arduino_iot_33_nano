@@ -15,15 +15,25 @@ char ssid[] = "Robert_iPhone";
 char pass[] = "0926656000";
 char auth[] = BLYNK_AUTH_TOKEN;
 
+BlynkTimer timer;
+
 void setup()
 {
   // Debug console
   Serial.begin(9600);
 
   Blynk.begin(auth, ssid, pass);
+  timer.setInterval(100, myTimerEvent); 
 }
 
 void loop()
 {
   Blynk.run();
+  timer.run();
+}
+
+void myTimerEvent() {
+    Serial.println("Hello!");  
+    //Blynk.virtualWrite(V0,rValue);   
+    
 }
