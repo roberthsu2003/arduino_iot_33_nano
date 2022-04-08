@@ -7,12 +7,12 @@
 */
 
 #include <Arduino.h>
-
 #include <WiFi.h>
 #include <WiFiMulti.h>
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
 #include "data.h"
+#define LIGHTS 36
 
 int status = WL_IDLE_STATUS;
 WiFiMulti WiFiMulti;
@@ -29,9 +29,6 @@ void setup()
     Serial.print(".");
   }
   Serial.println(" connected");
-
- 
-  ifttt();
   
 }
 
@@ -39,8 +36,13 @@ void setup()
 
 void loop()
 {
-  
-  
+  int lightValue = analogRead(LIGHTS);
+  byte percentValue = map(lightValue,70,3700,0,100);
+  Serial.println(percentValue);
+  if(percentValue >= 70){
+    Serial.printf("光線太暗:%d\n",percentValue);  
+  }
+  delay(100);
 }
 
 void ifttt(){
