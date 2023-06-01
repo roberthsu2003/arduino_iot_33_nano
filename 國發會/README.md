@@ -12,3 +12,4 @@ https://meet.google.com/rxy-nwaa-vmp
 [錄影](https://youtube.com/live/IkRKa-WBaH4)
 
 ## 2023_06_01_下午
+[錄影](https://youtube.com/live/liiUHS-zHyA)
