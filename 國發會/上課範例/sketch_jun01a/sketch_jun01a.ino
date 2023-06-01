@@ -9,11 +9,19 @@ void setup()
 
 void loop()
 {
+  oneSecond();
+  twoSecond();
+  
+}
+
+void oneSecond(){
   digitalWrite(RED_LED, HIGH);
   delay(1000); // Wait for 1000 millisecond(s)
   digitalWrite(RED_LED, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)
-  
+  delay(1000); // Wait for 1000 millisecond(s)  
+}
+
+void twoSecond(){
   digitalWrite(BLUE_LED, HIGH);
   delay(2000); // Wait for 1000 millisecond(s)
   digitalWrite(BLUE_LED, LOW);
