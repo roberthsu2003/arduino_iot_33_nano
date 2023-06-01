@@ -9,21 +9,26 @@ void setup()
 
 void loop()
 {
-  oneSecond();
+  oneSecond();  
   twoSecond();
-  
 }
 
 void oneSecond(){
-  digitalWrite(RED_LED, HIGH);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(RED_LED, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)  
+  static unsigned long previous = 0;
+  static bool ledState = false;
+  if(millis() - previous >= 1000){
+    previous = millis();
+    ledState = !ledState;
+  }
+  digitalWrite(RED_LED, ledState);
 }
 
 void twoSecond(){
-  digitalWrite(BLUE_LED, HIGH);
-  delay(2000); // Wait for 1000 millisecond(s)
-  digitalWrite(BLUE_LED, LOW);
-  delay(2000); // Wait for 1000 millisecond(s)
+  static unsigned long previous = 0;
+  static bool ledState = false;
+  if(millis() - previous >= 2000){
+    previous = millis();
+    ledState = !ledState;
+  }
+  digitalWrite(BLUE_LED, ledState);
 }
