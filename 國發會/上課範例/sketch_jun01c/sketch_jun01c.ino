@@ -3,6 +3,7 @@
 #define RED_PIN 5
 #define GREEN_PIN 6
 #define BLUE_PIN 9
+#define LIGHT A2
 
 byte rState = 0;
 
@@ -13,8 +14,10 @@ void setup()
   pinMode(RED_PIN, OUTPUT);
 }
 
-void loop()
+void loop()  
 {
+  int lightValue = analogRead(LIGHT);
+  Serial.println(lightValue);
   int value = analogRead(A1);
   int mapValue = map(value,0,1023,0,255);
   //Serial.println(mapValue);
