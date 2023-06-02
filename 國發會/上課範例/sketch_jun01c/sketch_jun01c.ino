@@ -7,6 +7,7 @@ void setup()
 
 void loop()
 {
-  int value = analogRead(A1) / 1023.0 * 255;
-  Serial.println(value);
+  int value = analogRead(A1);
+  int mapValue = map(value,0,1023,0,255);
+  Serial.println(mapValue);
 }
