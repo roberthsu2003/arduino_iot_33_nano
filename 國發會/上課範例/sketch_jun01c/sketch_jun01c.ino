@@ -3,9 +3,9 @@
 #define RED_PIN 5
 #define GREEN_PIN 6
 #define BLUE_PIN 9
-int rValue=0;
-int gValue=0;
-int bValue=0;
+
+byte rState = 0;
+
 
 void setup()
 {
@@ -19,27 +19,21 @@ void loop()
   int mapValue = map(value,0,1023,0,255);
   //Serial.println(mapValue);
   
-  changeColor(rValue,gValue,bValue);
+  changeColor(mapValue,rState);
   
   if(Serial.available()){
     switch(Serial.read()){
       case 'r':
         Serial.println('r');
-        rValue=255;
-        gValue=0;
-        bValue=0;
+        rState = 1;
         break;
       case 'g':
         Serial.println('g');
-        rValue=0;
-        gValue=255;
-        bValue=0;
+        rState = 2;
         break;
       case 'b':
         Serial.println('b');
-        rValue=0;
-        gValue=0;
-        bValue=255;
+        rState = 3;
         break;
       default:
         break;
@@ -49,12 +43,25 @@ void loop()
    
 }
 
-void changeColor(int r, int g, int b){
-  int rValue = (r>=120) ? 120 : r ;
-  int gValue = (g>=120) ? 120 : g ;
-  int bValue = (b>=120) ? 120 : b ;
+void changeColor(int value, byte state){
+  int allValue = (value>=120) ? 120 : value ;
+  if (state == 1){
+    analogWrite(RED_PIN, allValue);
+    analogWrite(GREEN_PIN,0);
+    analogWrite(BLUE_PIN,0); 
+  }else if(state == 2){
+    analogWrite(RED_PIN, 0);
+    analogWrite(GREEN_PIN,allValue);
+    analogWrite(BLUE_PIN,0); 
+    
+  }else if(state == 3){
+    analogWrite(RED_PIN, 0);
+    analogWrite(GREEN_PIN,0);
+    analogWrite(BLUE_PIN,allValue);     
+  }else{
+    analogWrite(RED_PIN, allValue);
+    analogWrite(GREEN_PIN,allValue);
+    analogWrite(BLUE_PIN,allValue); 
+  }
   
-  analogWrite(RED_PIN,rValue);
-  analogWrite(GREEN_PIN,gValue);
-  analogWrite(BLUE_PIN,bValue); 
 }
