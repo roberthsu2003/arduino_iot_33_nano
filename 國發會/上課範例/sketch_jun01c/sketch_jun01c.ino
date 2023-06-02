@@ -13,10 +13,18 @@ void setup()
 void loop()
 {
   int value = analogRead(A1);
-  int mapValue = map(value,0,1023,0,120);
+  int mapValue = map(value,0,1023,0,255);
   Serial.println(mapValue);
-  analogWrite(RED_PIN,mapValue);
-  analogWrite(GREEN_PIN,mapValue);
-  analogWrite(BLUE_PIN,mapValue);
+  changeColor(mapValue,0,0);
+   
+}
+
+void changeColor(int r, int g, int b){
+  int rValue = (r>=120) ? 120 : r ;
+  int gValue = (g>=120) ? 120 : g ;
+  int bValue = (b>=120) ? 120 : b ;
   
+  analogWrite(RED_PIN,rValue);
+  analogWrite(GREEN_PIN,gValue);
+  analogWrite(BLUE_PIN,bValue); 
 }
