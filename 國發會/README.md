@@ -18,4 +18,4 @@ https://meet.google.com/rxy-nwaa-vmp
 [錄影](https://youtube.com/live/AiBHQ1D0AZE)
 
 ## 2023_06_02_下午
-[錄影]()
+[錄影](https://youtube.com/live/hjer6DXte3U)
