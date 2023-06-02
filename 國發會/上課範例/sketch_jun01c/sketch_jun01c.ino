@@ -17,7 +17,15 @@ void setup()
 void loop()  
 {
   int lightValue = analogRead(LIGHT);
-  Serial.println(lightValue);
+  Serial.println(lightValue);  
+  if(lightValue <= 20){
+    doJob();
+  }else{
+    changeColor(0,rState);
+  }
+}
+
+void doJob(){
   int value = analogRead(A1);
   int mapValue = map(value,0,1023,0,255);
   //Serial.println(mapValue);
@@ -43,7 +51,6 @@ void loop()
     }
     
   }
-   
 }
 
 void changeColor(int value, byte state){
